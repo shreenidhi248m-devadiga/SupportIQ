@@ -256,12 +256,12 @@ function Navbar({ isScrolled, mobileMenuOpen, setMobileMenuOpen, openAuthModal }
 
           {/* Desktop Right CTA Buttons */}
           <div className="hidden md:flex items-center gap-4">
-            <button 
-              onClick={() => openAuthModal('login')}
+            <a 
+              href="login.html"
               className="text-sm font-medium text-slate-300 hover:text-white px-3 py-2 transition-colors"
             >
               Login
-            </button>
+            </a>
             <button 
               onClick={() => openAuthModal('started')}
               className="relative inline-flex items-center justify-center p-0.5 overflow-hidden text-sm font-medium rounded-xl group bg-gradient-to-br from-brand-blue to-brand-violet group-hover:from-brand-blue group-hover:to-brand-purple text-white shadow-lg shadow-brand-violet/25 hover:shadow-brand-violet/40 transition-all duration-300 hover:scale-[1.02]"
@@ -300,12 +300,12 @@ function Navbar({ isScrolled, mobileMenuOpen, setMobileMenuOpen, openAuthModal }
           ))}
           <div className="h-px bg-white/10 my-1"></div>
           <div className="flex flex-col gap-3">
-            <button 
-              onClick={() => openAuthModal('login')}
+            <a 
+              href="login.html"
               className="w-full py-3 text-center font-medium text-slate-200 border border-white/10 rounded-xl bg-white/5"
             >
               Login
-            </button>
+            </a>
             <button 
               onClick={() => openAuthModal('started')}
               className="w-full py-3 text-center font-semibold text-white bg-gradient-to-r from-brand-blue to-brand-violet rounded-xl shadow-lg shadow-brand-violet/20"
