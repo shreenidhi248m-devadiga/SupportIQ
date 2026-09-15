@@ -1,12 +1,12 @@
 import mongoose from 'mongoose';
-import { connectDatabase } from './src/config/database';
-import User from './src/models/User';
-import Ticket from './src/models/Ticket';
-import Message from './src/models/Message';
-import AIAnalysis from './src/models/AIAnalysis';
-import { AuthService } from './src/services/authService';
-import { generateTicketId } from './src/utils/generateTicketId';
-import { logger } from './src/utils/logger';
+import { connectDatabase } from './config/database';
+import User from './models/User';
+import Ticket from './models/Ticket';
+import Message from './models/Message';
+import AIAnalysis from './models/AIAnalysis';
+import { AuthService } from './services/authService';
+import { generateTicketId } from './utils/generateTicketId';
+import { logger } from './utils/logger';
 
 const seedDatabase = async () => {
   try {
@@ -28,9 +28,9 @@ const seedDatabase = async () => {
         isActive: true,
       });
       await adminUser.save();
-      logger.info('✅ Admin user created: admin@supportiq.com / Admin@123456');
+      logger.info('Admin user created: admin@supportiq.com / Admin@123456');
     } else {
-      logger.info('ℹ️ Admin user already exists: admin@supportiq.com');
+      logger.info('Admin user already exists: admin@supportiq.com');
     }
 
     // 2. Seed Customer User
@@ -48,9 +48,9 @@ const seedDatabase = async () => {
         isActive: true,
       });
       await customerUser.save();
-      logger.info('✅ Customer user created: john.doe@example.com / Customer@123456');
+      logger.info('Customer user created: john.doe@example.com / Customer@123456');
     } else {
-      logger.info('ℹ️ Customer user already exists: john.doe@example.com');
+      logger.info('Customer user already exists: john.doe@example.com');
     }
 
     // 3. Seed Sample Ticket & AI Analysis if no tickets exist
@@ -107,10 +107,10 @@ const seedDatabase = async () => {
       });
       await sampleMsg2.save();
 
-      logger.info(`✅ Sample Ticket #${ticketId} & AI Telemetry seeded.`);
+      logger.info(`Sample Ticket #${ticketId} & AI Telemetry seeded.`);
     }
 
-    logger.info('🎉 SupportIQ Database Seeding Complete!');
+    logger.info('SupportIQ Database Seeding Complete!');
     process.exit(0);
   } catch (error) {
     logger.error('Error seeding database:', error);

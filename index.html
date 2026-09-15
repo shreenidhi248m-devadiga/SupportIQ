@@ -10,71 +10,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
-                        mono: ['"Space Grotesk"', 'monospace'],
-                    },
-                    colors: {
-                        dark: {
-                            bg: '#040612',
-                            card: '#0A0F24',
-                            surface: '#0F1635',
-                            border: 'rgba(255, 255, 255, 0.08)',
-                            borderGlow: 'rgba(139, 92, 246, 0.3)'
-                        },
-                        brand: {
-                            blue: '#38BDF8',
-                            violet: '#8B5CF6',
-                            purple: '#A855F7',
-                            cyan: '#06B6D4',
-                            emerald: '#10B981',
-                            rose: '#F43F5E',
-                            amber: '#F59E0B'
-                        }
-                    },
-                    animation: {
-                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-                        'float': 'float 6s ease-in-out infinite',
-                        'float-delayed': 'float 6s ease-in-out 3s infinite',
-                        'glow': 'glow 3s ease-in-out infinite alternate',
-                        'shimmer': 'shimmer 2.5s infinite',
-                    },
-                    keyframes: {
-                        float: {
-                            '0%, 100%': { transform: 'translateY(0px)' },
-                            '50%': { transform: 'translateY(-10px)' },
-                        },
-                        glow: {
-                            '0%': { opacity: '0.4', filter: 'drop-shadow(0 0 15px rgba(56, 189, 248, 0.4))' },
-                            '100%': { opacity: '0.8', filter: 'drop-shadow(0 0 25px rgba(139, 92, 246, 0.7))' }
-                        },
-                        shimmer: {
-                            '100%': { transform: 'translateX(100%)' }
-                        }
-                    }
-                }
-            }
-        }
-    </script>
-
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="./styles.css">
-
-    <!-- React 18 & Babel Standalone -->
-    <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
-    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-
-    <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body class="bg-[#040612] text-slate-100 font-sans antialiased overflow-x-hidden selection:bg-brand-violet selection:text-white">
     <!-- Grid pattern background overlay -->
@@ -88,7 +23,6 @@
     <!-- App Root Container -->
     <div id="root" class="relative z-10 min-h-screen flex flex-col"></div>
 
-    <!-- Main React Application Script -->
-    <script type="text/babel" src="./app.js"></script>
+    <script type="module" src="/src/main.tsx"></script>
 </body>
 </html>

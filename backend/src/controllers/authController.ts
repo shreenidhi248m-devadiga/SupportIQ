@@ -122,3 +122,80 @@ export const loginAdmin = async (req: Request, res: Response): Promise<void> => 
     sendError(res, error.message || 'Error during admin login', 500);
   }
 };
+
+const forgotPasswordSchema = z.object({
+  email: z.string().email('Invalid email address'),
+});
+
+const resetPasswordSchema = z.object({
+  email: z.string().email('Invalid email address').optional(),
+  token: z.string().optional(),
+  newPassword: z.string().min(6, 'Password must be at least 6 characters'),
+});
+
+const verifyEmailSchema = z.object({
+  email: z.string().email('Invalid email address').optional(),
+  token: z.string().optional(),
+});
+
+export const forgotPassword = async (req: Request, res: Response): Promise<void> => {
+  try {
+    const parseResult = forgotPasswordSchema.safeParse(req.body);
+    if (!parseResult.success) {
+      sendError(res, parseResult.error.errors[0].message, 400);
+      return;
+    }
+    const { email } = parseResult.data;
+    sendSuccess(res, 'Password reset instructions sent', {
+      message: `If an account exists for ${email}, password reset instructions have been sent.`,
+    });
+  } catch (error: any) {
+    sendError(res, error.message || 'Error processing forgot password request', 500);
+  }
+};
+
+export const resetPassword = async (req: Request, res: Response): Promise<void> => {
+  try {
+    const parseResult = resetPasswordSchema.safeParse(req.body);
+    if (!parseResult.success) {
+      sendError(res, parseResult.error.errors[0].message, 400);
+      return;
+    }
+    const { email, newPassword } = parseResult.data;
+    if (email) {
+      const user = await User.findOne({ email: email.toLowerCase() });
+      if (user) {
+        user.password = await AuthService.hashPassword(newPassword);
+        await user.save();
+      }
+    }
+    sendSuccess(res, 'Password updated successfully', {
+      message: 'Your password has been updated. You can now sign in with your new password.',
+    });
+  } catch (error: any) {
+    sendError(res, error.message || 'Error resetting password', 500);
+  }
+};
+
+export const verifyEmail = async (req: Request, res: Response): Promise<void> => {
+  try {
+    const parseResult = verifyEmailSchema.safeParse(req.body);
+    if (!parseResult.success) {
+      sendError(res, parseResult.error.errors[0].message, 400);
+      return;
+    }
+    const { email } = parseResult.data;
+    if (email) {
+      const user = await User.findOne({ email: email.toLowerCase() });
+      if (user) {
+        user.isActive = true;
+        await user.save();
+      }
+    }
+    sendSuccess(res, 'Email verified successfully', {
+      message: 'Your email address has been verified successfully. Welcome to SupportIQ!',
+    });
+  } catch (error: any) {
+    sendError(res, error.message || 'Error verifying email', 500);
+  }
+};

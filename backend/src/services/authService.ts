@@ -1,10 +1,14 @@
-import jwt from 'jsonwebtoken';
+import jwt, { SignOptions } from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
 import User, { IUser } from '../models/User';
 import { env } from '../config/env';
 
 export class AuthService {
   static generateToken(user: IUser): string {
+    const options: SignOptions = {
+      expiresIn: (env.JWT_EXPIRES_IN || '7d') as any,
+    };
+
     return jwt.sign(
       {
         id: user._id,
@@ -13,7 +17,7 @@ export class AuthService {
         name: user.name,
       },
       env.JWT_SECRET,
-      { expiresIn: env.JWT_EXPIRES_IN }
+      options
     );
   }
 

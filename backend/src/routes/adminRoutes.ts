@@ -2,6 +2,8 @@ import { Router } from 'express';
 import {
   getAllTickets,
   getAllCustomers,
+  getCustomerIntelligence,
+  getAdminAnalytics,
   updateTicketStatus,
   getSystemAIOverview,
 } from '../controllers/adminController';
@@ -14,10 +16,13 @@ const router = Router();
 router.use(authenticateToken);
 router.use(requireAdmin);
 
+router.get('/analytics', getAdminAnalytics);
 router.get('/tickets', getAllTickets);
 router.get('/customers', getAllCustomers);
+router.get('/customers/:customerId/intelligence', getCustomerIntelligence);
 router.patch('/tickets/:ticketId/status', updateTicketStatus);
 router.patch('/tickets/:ticketId/department', updateTicketStatus);
+router.put('/tickets/:ticketId', updateTicketStatus);
 router.get('/ai-overview', getSystemAIOverview);
 
 export default router;
