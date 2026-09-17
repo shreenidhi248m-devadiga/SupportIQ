@@ -25,6 +25,7 @@ import AdminDashboard from './pages/AdminDashboard';
 import AdminTicketsPage from './pages/AdminTicketsPage';
 import AdminCustomersPage from './pages/AdminCustomersPage';
 import CustomerIntelligencePage from './pages/CustomerIntelligencePage';
+import AnalyticsPage from './pages/AnalyticsPage';
 
 // Modals
 import SessionExpiredModal from './components/auth/SessionExpiredModal';
@@ -69,10 +70,12 @@ export const AppContent: React.FC = () => {
 
           {/* Protected Admin Routes */}
           <Route element={<ProtectedRoute allowedRole="admin" />}>
+            <Route path="/admin" element={<Navigate to="/admin/dashboard" replace />} />
             <Route path="/admin/dashboard" element={<AdminDashboard />} />
             <Route path="/admin/tickets" element={<AdminTicketsPage />} />
             <Route path="/admin/customers" element={<AdminCustomersPage />} />
             <Route path="/admin/customers/:customerId/intelligence" element={<CustomerIntelligencePage />} />
+            <Route path="/admin/intelligence" element={<AnalyticsPage />} />
           </Route>
 
           {/* Fallback Catch-all */}
