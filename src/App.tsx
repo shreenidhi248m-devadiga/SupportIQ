@@ -26,6 +26,8 @@ import AdminTicketsPage from './pages/AdminTicketsPage';
 import AdminCustomersPage from './pages/AdminCustomersPage';
 import CustomerIntelligencePage from './pages/CustomerIntelligencePage';
 import AnalyticsPage from './pages/AnalyticsPage';
+import SecurityDashboardPage from './pages/SecurityDashboardPage';
+import DeploymentPage from './pages/DeploymentPage';
 
 // Modals
 import SessionExpiredModal from './components/auth/SessionExpiredModal';
@@ -76,6 +78,8 @@ export const AppContent: React.FC = () => {
             <Route path="/admin/customers" element={<AdminCustomersPage />} />
             <Route path="/admin/customers/:customerId/intelligence" element={<CustomerIntelligencePage />} />
             <Route path="/admin/intelligence" element={<AnalyticsPage />} />
+            <Route path="/admin/security" element={<SecurityDashboardPage />} />
+            <Route path="/admin/deployment" element={<DeploymentPage />} />
           </Route>
 
           {/* Fallback Catch-all */}

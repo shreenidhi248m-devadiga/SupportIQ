@@ -10,11 +10,15 @@ import {
 import { authenticateToken } from '../middleware/authMiddleware';
 import { requireAdmin } from '../middleware/roleMiddleware';
 
+import deploymentRoutes from './deploymentRoutes';
+
 const router = Router();
 
 // Protect all admin endpoints
 router.use(authenticateToken);
 router.use(requireAdmin);
+
+router.use('/deployment', deploymentRoutes);
 
 router.get('/analytics', getAdminAnalytics);
 router.get('/tickets', getAllTickets);

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import { Sparkles, Shield, User as UserIcon, LogOut, Ticket, Cpu, BarChart2, Bell, LayoutDashboard, CheckCircle, AlertCircle } from 'lucide-react';
+import { Sparkles, Shield, Rocket, User as UserIcon, LogOut, Ticket, Cpu, BarChart2, Bell, LayoutDashboard, CheckCircle, AlertCircle } from 'lucide-react';
 import api from '../services/api';
 import LogoutConfirmModal from './auth/LogoutConfirmModal';
 
@@ -144,6 +144,22 @@ export const Navbar: React.FC = () => {
                   }`}
                 >
                   Customers
+                </Link>
+                <Link
+                  to="/admin/security"
+                  className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors flex items-center gap-1.5 ${
+                    isActive('/admin/security') ? 'text-rose-400 bg-rose-400/10 border border-rose-400/30' : 'text-slate-300 hover:text-white hover:bg-white/5'
+                  }`}
+                >
+                  <Shield className="w-4 h-4 text-rose-400" /> Security
+                </Link>
+                <Link
+                  to="/admin/deployment"
+                  className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors flex items-center gap-1.5 ${
+                    isActive('/admin/deployment') ? 'text-brand-blue bg-brand-blue/10 border border-brand-blue/30' : 'text-slate-300 hover:text-white hover:bg-white/5'
+                  }`}
+                >
+                  <Rocket className="w-4 h-4 text-brand-blue" /> Deployment
                 </Link>
               </>
             )}
