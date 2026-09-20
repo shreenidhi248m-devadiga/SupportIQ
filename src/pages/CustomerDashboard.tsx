@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import CustomerLayout from '../components/customer/CustomerLayout';
+import UserLayout from '../components/customer/UserLayout';
 import WelcomeSection from '../components/customer/WelcomeSection';
 import StatsCards from '../components/customer/StatsCards';
 import AIAssistantCard from '../components/customer/AIAssistantCard';
@@ -27,14 +27,14 @@ export const CustomerDashboard: React.FC = () => {
   }, []);
 
   return (
-    <CustomerLayout>
+    <UserLayout>
       <div className="space-y-6">
         <WelcomeSection />
         <StatsCards tickets={tickets} loading={loading} />
         <AIAssistantCard onTicketCreated={fetchTickets} />
         <RecentTickets tickets={tickets} loading={loading} />
       </div>
-    </CustomerLayout>
+    </UserLayout>
   );
 };
 

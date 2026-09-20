@@ -19,37 +19,37 @@ export const TopNavbar: React.FC<TopNavbarProps> = ({ onLogoutClick, apiOnline =
   const handleSearchSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (searchQuery.trim()) {
-      navigate(`/customer/tickets?search=${encodeURIComponent(searchQuery.trim())}`);
+      navigate(`/user/tickets?search=${encodeURIComponent(searchQuery.trim())}`);
     }
   };
 
   return (
-    <header className="h-16 border-b border-white/10 bg-slate-950/70 backdrop-blur-xl sticky top-0 z-20 px-6 flex items-center justify-between">
+    <header className="h-16 border-b border-[#E5E7EB] dark:border-[#111A33] bg-white dark:bg-[#0D1428]/70 backdrop-blur-xl sticky top-0 z-20 px-6 flex items-center justify-between">
       {/* Search Bar */}
       <form onSubmit={handleSearchSubmit} className="relative w-full max-w-md">
-        <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
+        <Search className="w-4 h-4 text-gray-600 dark:text-[#A8B3C7] absolute left-3.5 top-1/2 -translate-y-1/2" />
         <input
           type="text"
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           placeholder="Search tickets, issues, knowledge base..."
-          className="w-full bg-slate-900/80 border border-white/10 rounded-xl pl-10 pr-4 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-brand-violet focus:ring-1 focus:ring-brand-violet/30 transition-all"
+          className="w-full bg-white dark:bg-[#111A33] border border-[#E5E7EB] dark:border-[#111A33] rounded-xl pl-10 pr-4 py-2 text-xs text-[#102A56] dark:text-[#F8FAFC] placeholder-slate-500 focus:outline-none focus:border-brand-violet focus:ring-1 focus:ring-brand-violet/30 transition-all"
         />
       </form>
 
       {/* Right Controls */}
       <div className="flex items-center space-x-3">
         {/* API Health Status */}
-        <div className="hidden sm:flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[11px] font-mono">
+        <div className="hidden sm:flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#F8FAFC] dark:bg-[#111A33] border border-[#E5E7EB] dark:border-[#111A33] text-[11px] font-mono">
           <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-          <span className="text-slate-300">SupportIQ AI Online</span>
+          <span className="text-gray-500 dark:text-[#71809A]">SupportIQ AI Online</span>
         </div>
 
         {/* Notifications Popover Trigger */}
         <div className="relative">
           <button
             onClick={() => setShowNotifications(!showNotifications)}
-            className="p-2.5 rounded-xl bg-white/5 border border-white/10 text-slate-300 hover:text-white hover:bg-white/10 transition-colors relative"
+            className="p-2.5 rounded-xl bg-[#F8FAFC] dark:bg-[#111A33] border border-[#E5E7EB] dark:border-[#111A33] text-gray-500 dark:text-[#71809A] hover:text-[#102A56] dark:text-[#F8FAFC] hover:bg-white/10 transition-colors relative"
             title="Notifications"
           >
             <Bell className="w-4 h-4" />
@@ -65,25 +65,25 @@ export const TopNavbar: React.FC<TopNavbarProps> = ({ onLogoutClick, apiOnline =
         <div className="relative">
           <button
             onClick={() => setShowUserDropdown(!showUserDropdown)}
-            className="flex items-center gap-2.5 p-1.5 pr-3 rounded-xl bg-white/5 border border-white/10 hover:border-white/20 transition-all"
+            className="flex items-center gap-2.5 p-1.5 pr-3 rounded-xl bg-[#F8FAFC] dark:bg-[#111A33] border border-[#E5E7EB] dark:border-[#111A33] hover:border-white/20 transition-all"
           >
-            <div className="w-7 h-7 rounded-lg bg-gradient-to-tr from-brand-violet to-brand-blue flex items-center justify-center font-bold text-white text-xs">
+            <div className="w-7 h-7 rounded-lg bg-gradient-to-tr from-brand-violet to-brand-blue flex items-center justify-center font-bold text-[#102A56] dark:text-[#F8FAFC] text-xs">
               {user?.name ? user.name.charAt(0).toUpperCase() : 'C'}
             </div>
-            <span className="text-xs font-semibold text-white max-w-[120px] truncate">
+            <span className="text-xs font-semibold text-[#102A56] dark:text-[#F8FAFC] max-w-[120px] truncate">
               {user?.name || 'Customer'}
             </span>
-            <ChevronDown className="w-3.5 h-3.5 text-slate-400" />
+            <ChevronDown className="w-3.5 h-3.5 text-gray-600 dark:text-[#A8B3C7]" />
           </button>
 
           {showUserDropdown && (
-            <div className="absolute right-0 mt-2 w-48 rounded-2xl bg-slate-900 border border-white/10 shadow-2xl p-1.5 text-xs font-medium text-slate-300 z-50">
+            <div className="absolute right-0 mt-2 w-48 rounded-2xl bg-white dark:bg-[#111A33] border border-[#E5E7EB] dark:border-[#111A33] shadow-2xl p-1.5 text-xs font-medium text-gray-500 dark:text-[#71809A] z-50">
               <Link
-                to="/customer/profile"
+                to="/user/profile"
                 onClick={() => setShowUserDropdown(false)}
-                className="flex items-center gap-2.5 px-3 py-2 rounded-xl hover:bg-white/10 hover:text-white transition-colors"
+                className="flex items-center gap-2.5 px-3 py-2 rounded-xl hover:bg-white/10 hover:text-[#102A56] dark:text-[#F8FAFC] transition-colors"
               >
-                <User className="w-4 h-4 text-brand-blue" />
+                <User className="w-4 h-4 text-[#2563EB]" />
                 Profile Settings
               </Link>
               <button

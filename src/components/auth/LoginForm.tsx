@@ -50,7 +50,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({ onSwitchToRegister }) => {
       setSuccess('Login successful! Redirecting to dashboard...');
 
       setTimeout(() => {
-        navigate('/customer/dashboard');
+        navigate('/user');
       }, 1000);
     } catch (err: any) {
       const errMsg = err.response?.data?.message || err.message || 'Invalid email or password.';
@@ -63,20 +63,20 @@ export const LoginForm: React.FC<LoginFormProps> = ({ onSwitchToRegister }) => {
   return (
     <div className="space-y-6 text-left">
       <div>
-        <h2 className="text-2xl font-bold text-white tracking-tight">Welcome back</h2>
-        <p className="text-sm text-slate-400 mt-1">Sign in to continue to your SupportIQ workspace.</p>
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white tracking-tight transition-colors">Welcome back</h2>
+        <p className="text-sm text-slate-500 dark:text-slate-400 mt-1 transition-colors">Sign in to continue to your SupportIQ workspace.</p>
       </div>
 
       {/* Demo Credentials Helper Box */}
-      <div className="p-3 rounded-2xl bg-brand-violet/10 border border-brand-violet/30 text-xs font-mono flex items-center justify-between gap-2">
-        <div className="flex items-center gap-2 text-brand-cyan">
+      <div className="p-3 rounded-2xl bg-blue-50 dark:bg-brand-violet/10 border border-blue-200 dark:border-brand-violet/30 text-[11px] dark:text-xs font-mono flex items-center justify-between gap-2 transition-colors">
+        <div className="flex items-center gap-2 text-blue-800 dark:text-brand-cyan transition-colors">
           <Zap className="w-4 h-4 shrink-0" />
           <span className="truncate">Demo: john.doe@example.com</span>
         </div>
         <button
           type="button"
           onClick={fillDemoCustomer}
-          className="px-2.5 py-1 rounded-lg bg-brand-violet hover:bg-brand-violet/80 text-white font-bold transition-all shrink-0"
+          className="px-2.5 py-1 rounded-lg bg-brand-blue hover:bg-blue-700 dark:bg-brand-violet dark:hover:bg-brand-violet/80 text-white font-bold transition-all shrink-0"
         >
           Auto Fill
         </button>
@@ -117,13 +117,13 @@ export const LoginForm: React.FC<LoginFormProps> = ({ onSwitchToRegister }) => {
           onChange={(e) => setPassword(e.target.value)}
         />
 
-        <div className="flex items-center justify-between text-xs font-mono text-slate-400">
+        <div className="flex items-center justify-between text-xs font-mono text-slate-500 dark:text-slate-400 transition-colors">
           <label className="flex items-center gap-2 cursor-pointer select-none">
             <input
               type="checkbox"
               checked={rememberMe}
               onChange={(e) => setRememberMe(e.target.checked)}
-              className="rounded bg-slate-950 border-white/20 text-brand-violet focus:ring-brand-violet/40"
+              className="rounded bg-white dark:bg-slate-950 border-slate-300 dark:border-white/20 text-brand-violet focus:ring-brand-violet/40 transition-colors"
             />
             <span>Remember me</span>
           </label>
@@ -148,7 +148,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({ onSwitchToRegister }) => {
 
       <SocialLogin />
 
-      <div className="pt-2 text-center text-xs font-mono text-slate-400">
+      <div className="pt-2 text-center text-sm font-bold font-mono text-slate-800 dark:text-slate-200 transition-colors">
         Don't have an account?{' '}
         {onSwitchToRegister ? (
           <button

@@ -5,7 +5,6 @@ import { useAuth } from '../../context/AuthContext';
 import authApi from '../../services/authApi';
 import AuthInput from './AuthInput';
 import AuthButton from './AuthButton';
-import PasswordStrength from './PasswordStrength';
 
 export const RegisterForm: React.FC = () => {
   const navigate = useNavigate();
@@ -67,8 +66,8 @@ export const RegisterForm: React.FC = () => {
   return (
     <div className="space-y-6 text-left">
       <div>
-        <h2 className="text-2xl font-bold text-white tracking-tight">Create your SupportIQ account</h2>
-        <p className="text-sm text-slate-400 mt-1">Get faster, smarter support with AI-powered assistance.</p>
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white tracking-tight transition-colors">Create your SupportIQ account</h2>
+        <p className="text-sm text-slate-500 dark:text-slate-400 mt-1 transition-colors">Get faster, smarter support with AI-powered assistance.</p>
       </div>
 
       {error && (
@@ -124,8 +123,6 @@ export const RegisterForm: React.FC = () => {
           onChange={(e) => setPassword(e.target.value)}
         />
 
-        <PasswordStrength password={password} />
-
         <AuthInput
           label="Confirm Password"
           isPassword
@@ -137,12 +134,12 @@ export const RegisterForm: React.FC = () => {
           error={confirmPassword && password !== confirmPassword ? 'Passwords do not match' : undefined}
         />
 
-        <label className="flex items-start gap-2.5 cursor-pointer text-xs font-mono text-slate-400 select-none pt-1">
+        <label className="flex items-start gap-2.5 cursor-pointer text-xs font-mono font-bold text-slate-800 dark:text-slate-200 select-none pt-1 transition-colors">
           <input
             type="checkbox"
             checked={agreeTerms}
             onChange={(e) => setAgreeTerms(e.target.checked)}
-            className="mt-0.5 rounded bg-slate-950 border-white/20 text-brand-violet focus:ring-brand-violet/40"
+            className="mt-0.5 rounded bg-white dark:bg-slate-950 border-slate-300 dark:border-white/20 text-brand-violet focus:ring-brand-violet/40 transition-colors"
           />
           <span>
             I agree to the <a href="#" className="text-brand-blue hover:underline">Terms of Service</a> and{' '}
@@ -160,7 +157,7 @@ export const RegisterForm: React.FC = () => {
         </AuthButton>
       </form>
 
-      <div className="pt-2 text-center text-xs font-mono text-slate-400 border-t border-white/10">
+      <div className="pt-2 text-center text-sm font-bold font-mono text-slate-800 dark:text-slate-200 border-t border-slate-200 dark:border-white/10 transition-colors">
         Already have an account?{' '}
         <Link to="/login" className="text-brand-blue font-semibold hover:underline">
           Sign In

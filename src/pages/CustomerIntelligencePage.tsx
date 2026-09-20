@@ -165,7 +165,7 @@ export const CustomerIntelligencePage: React.FC = () => {
               ticketHistory.map((t) => (
                 <Link
                   key={t._id}
-                  to={`/customer/tickets/${t.ticketId}`}
+                  to={`/admin/tickets/${t.ticketId}`}
                   className="block p-4 rounded-xl bg-black/40 hover:bg-white/5 border border-white/5 space-y-1 transition-colors"
                 >
                   <div className="flex justify-between items-center text-slate-300">

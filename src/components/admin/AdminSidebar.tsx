@@ -36,27 +36,20 @@ export const AdminSidebar: React.FC<AdminSidebarProps> = ({ isOpen, onClose }) =
       title: 'Support Operations',
       links: [
         { name: 'Tickets', path: '/admin/tickets', icon: Ticket },
-        { name: 'Customers', path: '/admin/customers', icon: Users },
-        { name: 'Departments', path: '/admin/departments', icon: Building2 }
+        { name: 'Customers', path: '/admin/customers', icon: Users }
       ]
     },
     {
-      title: 'Customer Intelligence',
+      title: 'Intelligence',
       links: [
-        { name: 'Analytics & Insights', path: '/admin/intelligence', icon: BrainCircuit }
-      ]
-    },
-    {
-      title: 'Analytics',
-      links: [
-        { name: 'Support Analytics', path: '/admin/analytics', icon: BarChart4 },
-        { name: 'AI Performance', path: '/admin/ai-performance', icon: Cpu }
+        { name: 'Analytics', path: '/admin/analytics', icon: BarChart4 },
+        { name: 'Churn Prediction', path: '/admin/churn', icon: AlertOctagon },
+        { name: 'AI Analytics', path: '/admin/ai', icon: BrainCircuit }
       ]
     },
     {
       title: 'System',
       links: [
-        { name: 'Notifications', path: '/admin/notifications', icon: Bell },
         { name: 'Settings', path: '/admin/settings', icon: Settings }
       ]
     }

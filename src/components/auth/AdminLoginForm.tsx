@@ -46,7 +46,7 @@ export const AdminLoginForm: React.FC = () => {
       setSuccess('Admin authentication successful! Accessing console...');
 
       setTimeout(() => {
-        navigate('/admin/dashboard');
+        navigate('/admin');
       }, 1000);
     } catch (err: any) {
       const errMsg = err.response?.data?.message || err.message || 'Invalid administrator credentials.';
@@ -59,18 +59,18 @@ export const AdminLoginForm: React.FC = () => {
   return (
     <div className="space-y-6 text-left">
       <div>
-        <h2 className="text-2xl font-bold text-white tracking-tight flex items-center gap-2">
-          <Shield className="w-6 h-6 text-teal-400 shrink-0" />
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white tracking-tight flex items-center gap-2 transition-colors">
+          <Shield className="w-6 h-6 text-teal-600 dark:text-teal-400 shrink-0 transition-colors" />
           Administrator Access
         </h2>
-        <p className="text-sm text-slate-400 mt-1">Sign in securely to manage the SupportIQ platform.</p>
+        <p className="text-sm text-slate-500 dark:text-slate-400 mt-1 transition-colors">Sign in securely to manage the SupportIQ platform.</p>
       </div>
 
       <SecurityIndicator role="admin" />
 
       {/* Demo Admin Helper */}
-      <div className="p-3 rounded-2xl bg-teal-500/10 border border-teal-500/30 text-xs font-mono flex items-center justify-between gap-2">
-        <div className="flex items-center gap-2 text-teal-300">
+      <div className="p-3 rounded-2xl bg-teal-50 dark:bg-teal-500/10 border border-teal-200 dark:border-teal-500/30 text-[11px] dark:text-xs font-mono flex items-center justify-between gap-2 transition-colors">
+        <div className="flex items-center gap-2 text-teal-800 dark:text-teal-300 transition-colors">
           <Zap className="w-4 h-4 shrink-0" />
           <span className="truncate">Demo: admin@supportiq.com</span>
         </div>
@@ -126,20 +126,20 @@ export const AdminLoginForm: React.FC = () => {
           onChange={(e) => setAccessCode(e.target.value)}
         />
 
-        <div className="flex items-center justify-between text-xs font-mono text-slate-400">
+        <div className="flex items-center justify-between text-xs font-mono text-slate-500 dark:text-slate-400 transition-colors">
           <label className="flex items-center gap-2 cursor-pointer select-none">
             <input
               type="checkbox"
               checked={rememberDevice}
               onChange={(e) => setRememberDevice(e.target.checked)}
-              className="rounded bg-slate-950 border-white/20 text-teal-500 focus:ring-teal-500/40"
+              className="rounded bg-white dark:bg-slate-950 border-slate-300 dark:border-white/20 text-teal-600 dark:text-teal-500 focus:ring-teal-500/40 transition-colors"
             />
             <span>Remember this device</span>
           </label>
 
           <Link
             to="/forgot-password"
-            className="text-teal-400 hover:text-teal-300 hover:underline transition-colors"
+            className="text-teal-600 dark:text-teal-400 hover:text-teal-500 dark:hover:text-teal-300 hover:underline transition-colors"
           >
             Forgot password?
           </Link>

@@ -81,8 +81,8 @@ export const MultiModalInput: React.FC<MultiModalInputProps> = ({ onSubmit }) =>
             className="flex flex-col items-center"
           >
             <div className="text-center mb-10">
-              <h2 className="text-3xl font-bold text-white mb-3">Explain it your way. SupportIQ understands the rest.</h2>
-              <p className="text-slate-400 max-w-2xl mx-auto text-lg">
+              <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-3">Explain it your way. SupportIQ understands the rest.</h2>
+              <p className="text-slate-600 dark:text-slate-400 max-w-2xl mx-auto text-lg">
                 Speak your problem, upload a document, or add an image. Our AI will analyze the information and help route your request to the right support team.
               </p>
             </div>
@@ -132,14 +132,14 @@ export const MultiModalInput: React.FC<MultiModalInputProps> = ({ onSubmit }) =>
             className="w-full"
           >
             <div className="mb-8">
-              <h2 className="text-2xl font-bold text-white mb-2">Your Support Request</h2>
-              <p className="text-slate-400">Review the information SupportIQ has gathered before final submission.</p>
+              <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-2">Your Support Request</h2>
+              <p className="text-slate-600 dark:text-slate-400">Review the information SupportIQ has gathered before final submission.</p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
               {/* Inputs Summary */}
-              <div className="bg-slate-900/60 border border-white/5 p-6 rounded-2xl">
-                <h3 className="text-sm font-mono text-slate-400 uppercase tracking-wider mb-4">Input Provided</h3>
+              <div className="bg-slate-50 dark:bg-slate-900/60 border border-slate-200 dark:border-white/5 p-6 rounded-2xl">
+                <h3 className="text-sm font-mono text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-4">Input Provided</h3>
                 
                 <div className="space-y-4">
                   {voiceText ? (
@@ -148,12 +148,12 @@ export const MultiModalInput: React.FC<MultiModalInputProps> = ({ onSubmit }) =>
                         <Mic className="w-5 h-5" />
                       </div>
                       <div>
-                        <div className="text-sm font-semibold text-white mb-1">Voice Transcribed</div>
-                        <p className="text-sm text-slate-300 italic border-l-2 border-brand-violet/30 pl-3">"{voiceText}"</p>
+                        <div className="text-sm font-semibold text-slate-900 dark:text-white mb-1">Voice Transcribed</div>
+                        <p className="text-sm text-slate-700 dark:text-slate-300 italic border-l-2 border-brand-violet/30 pl-3">"{voiceText}"</p>
                       </div>
                     </div>
                   ) : (
-                    <div className="flex items-center justify-between p-3 border border-white/10 border-dashed rounded-xl">
+                    <div className="flex items-center justify-between p-3 border border-slate-300 dark:border-white/10 border-dashed rounded-xl">
                       <span className="text-sm text-slate-500">No voice recorded</span>
                       <button onClick={() => { setSelectedMethod('voice'); setShowSummary(false); }} className="text-xs text-brand-violet hover:underline">Add Voice</button>
                     </div>
@@ -165,12 +165,12 @@ export const MultiModalInput: React.FC<MultiModalInputProps> = ({ onSubmit }) =>
                         {attachment.type.startsWith('image') ? <ImageIcon className="w-5 h-5" /> : <FileText className="w-5 h-5" />}
                       </div>
                       <div>
-                        <div className="text-sm font-semibold text-white mb-1">{attachment.type.startsWith('image') ? 'Image Uploaded' : 'Document Uploaded'}</div>
-                        <p className="text-sm text-slate-300">{attachment.name}</p>
+                        <div className="text-sm font-semibold text-slate-900 dark:text-white mb-1">{attachment.type.startsWith('image') ? 'Image Uploaded' : 'Document Uploaded'}</div>
+                        <p className="text-sm text-slate-700 dark:text-slate-300">{attachment.name}</p>
                       </div>
                     </div>
                   ) : (
-                    <div className="flex items-center justify-between p-3 border border-white/10 border-dashed rounded-xl">
+                    <div className="flex items-center justify-between p-3 border border-slate-300 dark:border-white/10 border-dashed rounded-xl">
                       <span className="text-sm text-slate-500">No files uploaded</span>
                       <div className="flex gap-2">
                         <button onClick={() => { setSelectedMethod('image'); setShowSummary(false); }} className="text-xs text-brand-blue hover:underline">Add Image</button>
@@ -191,15 +191,15 @@ export const MultiModalInput: React.FC<MultiModalInputProps> = ({ onSubmit }) =>
                     <div className="grid grid-cols-2 gap-4">
                       <div>
                         <div className="text-[10px] text-slate-500 uppercase tracking-wider mb-1">Intent</div>
-                        <div className="text-white font-medium capitalize">{analysisResult.intent}</div>
+                        <div className="text-slate-900 dark:text-white font-medium capitalize">{analysisResult.intent}</div>
                       </div>
                       <div>
                         <div className="text-[10px] text-slate-500 uppercase tracking-wider mb-1">Category</div>
-                        <div className="text-white font-medium capitalize">{analysisResult.category}</div>
+                        <div className="text-slate-900 dark:text-white font-medium capitalize">{analysisResult.category}</div>
                       </div>
                       <div>
                         <div className="text-[10px] text-slate-500 uppercase tracking-wider mb-1">Department</div>
-                        <div className="text-white font-medium capitalize">{analysisResult.department}</div>
+                        <div className="text-slate-900 dark:text-white font-medium capitalize">{analysisResult.department}</div>
                       </div>
                       <div>
                         <div className="text-[10px] text-slate-500 uppercase tracking-wider mb-1">AI Confidence</div>
@@ -211,7 +211,7 @@ export const MultiModalInput: React.FC<MultiModalInputProps> = ({ onSubmit }) =>
                     {analysisResult.extractedText && (
                       <div className="mt-4 pt-4 border-t border-brand-blue/20">
                         <div className="text-[10px] text-slate-500 uppercase tracking-wider mb-1">Extracted Information</div>
-                        <p className="text-sm text-slate-300 font-mono bg-slate-900/50 p-2 rounded-lg whitespace-pre-wrap">
+                        <p className="text-sm text-slate-700 dark:text-slate-300 font-mono bg-white/50 dark:bg-slate-900/50 p-2 rounded-lg whitespace-pre-wrap">
                           {analysisResult.extractedText}
                         </p>
                       </div>
@@ -228,13 +228,13 @@ export const MultiModalInput: React.FC<MultiModalInputProps> = ({ onSubmit }) =>
             <div className="flex flex-col sm:flex-row gap-4 justify-end border-t border-white/10 pt-6">
               <button 
                 onClick={() => setShowSummary(false)}
-                className="py-3.5 px-6 rounded-xl bg-slate-800 text-slate-300 font-semibold text-sm hover:bg-slate-700 transition-all flex items-center justify-center gap-2"
+                className="py-3.5 px-6 rounded-xl bg-blue-50 text-blue-700 border border-blue-200 hover:bg-blue-100 dark:bg-[#2563EB]/20 dark:text-blue-300 dark:border-[#2563EB]/50 dark:hover:bg-[#2563EB]/40 font-semibold text-sm transition-all flex items-center justify-center gap-2"
               >
                 <Edit3 className="w-4 h-4" /> Edit Request
               </button>
               <button 
                 onClick={handleFinalSubmit}
-                className="py-3.5 px-8 rounded-xl bg-gradient-to-r from-brand-blue to-brand-violet text-white font-bold text-sm shadow-[0_0_20px_rgba(139,92,246,0.3)] hover:opacity-90 transition-all flex items-center justify-center gap-2"
+                className="py-3.5 px-8 rounded-xl bg-[#2563EB] hover:bg-blue-700 text-white font-bold text-sm shadow-lg shadow-brand-blue/25 transition-all flex items-center justify-center gap-2"
               >
                 Analyze & Submit Request <ArrowRight className="w-4 h-4" />
               </button>

@@ -39,21 +39,21 @@ export const AIResultCard: React.FC<AIResultCardProps> = ({ analysis, onReset, o
       <div className="p-6 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 space-y-4 text-center">
         <CheckCircle2 className="w-10 h-10 mx-auto text-emerald-400" />
         <div>
-          <h3 className="text-xl font-bold text-white">Ticket Created Successfully!</h3>
+          <h3 className="text-xl font-bold text-[#102A56] dark:text-[#F8FAFC]">Ticket Created Successfully!</h3>
           <p className="text-xs text-emerald-200 mt-1 font-mono">
-            Ticket ID: <span className="font-bold text-white">#{ticketCreatedId}</span>
+            Ticket ID: <span className="font-bold text-[#102A56] dark:text-[#F8FAFC]">#{ticketCreatedId}</span>
           </p>
         </div>
         <div className="flex justify-center gap-3 pt-2">
           <button
-            onClick={() => navigate(`/customer/tickets/${ticketCreatedId}`)}
-            className="px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs transition-all shadow-lg shadow-emerald-600/30 flex items-center gap-2"
+            onClick={() => navigate(`/user/tickets/${ticketCreatedId}`)}
+            className="px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-[#102A56] dark:text-[#F8FAFC] font-bold text-xs transition-all shadow-lg shadow-emerald-600/30 flex items-center gap-2"
           >
             View Ticket <ArrowRight className="w-4 h-4" />
           </button>
           <button
             onClick={onReset}
-            className="px-5 py-2.5 rounded-xl bg-white/10 hover:bg-white/15 text-white font-semibold text-xs transition-all"
+            className="px-5 py-2.5 rounded-xl bg-white/10 hover:bg-white/15 text-[#102A56] dark:text-[#F8FAFC] font-semibold text-xs transition-all"
           >
             Ask Another Question
           </button>
@@ -66,40 +66,40 @@ export const AIResultCard: React.FC<AIResultCardProps> = ({ analysis, onReset, o
     <div className="space-y-6">
       {/* Breakdown Grid */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 font-mono text-xs">
-        <div className="p-3 rounded-xl bg-slate-950/60 border border-white/10 space-y-1">
-          <span className="text-slate-400 text-[10px] uppercase">Intent</span>
-          <p className="font-bold text-white truncate">{analysis.intent || 'General Inquiry'}</p>
+        <div className="p-3 rounded-xl bg-white dark:bg-[#0D1428]/60 border border-[#E5E7EB] dark:border-[#111A33] space-y-1">
+          <span className="text-gray-600 dark:text-[#A8B3C7] text-[10px] uppercase">Intent</span>
+          <p className="font-bold text-[#102A56] dark:text-[#F8FAFC] truncate">{analysis.intent || 'General Inquiry'}</p>
         </div>
 
-        <div className="p-3 rounded-xl bg-slate-950/60 border border-white/10 space-y-1">
-          <span className="text-slate-400 text-[10px] uppercase">Department</span>
-          <p className="font-bold text-brand-cyan truncate">{analysis.department || 'Support'}</p>
+        <div className="p-3 rounded-xl bg-white dark:bg-[#0D1428]/60 border border-[#E5E7EB] dark:border-[#111A33] space-y-1">
+          <span className="text-gray-600 dark:text-[#A8B3C7] text-[10px] uppercase">Department</span>
+          <p className="font-bold text-[#2563EB] truncate">{analysis.department || 'Support'}</p>
         </div>
 
-        <div className="p-3 rounded-xl bg-slate-950/60 border border-white/10 space-y-1">
-          <span className="text-slate-400 text-[10px] uppercase">Priority</span>
+        <div className="p-3 rounded-xl bg-white dark:bg-[#0D1428]/60 border border-[#E5E7EB] dark:border-[#111A33] space-y-1">
+          <span className="text-gray-600 dark:text-[#A8B3C7] text-[10px] uppercase">Priority</span>
           <p className="font-bold text-amber-400 uppercase">{analysis.priority || 'medium'}</p>
         </div>
 
-        <div className="p-3 rounded-xl bg-slate-950/60 border border-white/10 space-y-1">
-          <span className="text-slate-400 text-[10px] uppercase">AI Confidence</span>
+        <div className="p-3 rounded-xl bg-white dark:bg-[#0D1428]/60 border border-[#E5E7EB] dark:border-[#111A33] space-y-1">
+          <span className="text-gray-600 dark:text-[#A8B3C7] text-[10px] uppercase">AI Confidence</span>
           <p className="font-bold text-emerald-400">{Math.round((analysis.confidence || 0.95) * 100)}%</p>
         </div>
       </div>
 
       {/* AI Response Card */}
-      <div className="p-4 rounded-2xl bg-slate-950/80 border border-brand-violet/30 space-y-2 text-left">
-        <div className="flex items-center gap-2 text-xs font-mono text-brand-cyan">
+      <div className="p-4 rounded-2xl bg-white dark:bg-[#0D1428] border border-[#2563EB]/20 dark:border-[#2563EB]/20 space-y-2 text-left">
+        <div className="flex items-center gap-2 text-xs font-mono text-[#2563EB]">
           <Sparkles className="w-4 h-4" /> SupportIQ AI Response:
         </div>
-        <p className="text-sm text-slate-200 leading-relaxed font-sans">{analysis.aiResponse}</p>
+        <p className="text-sm text-[#102A56] dark:text-[#F8FAFC] leading-relaxed font-sans">{analysis.aiResponse}</p>
       </div>
 
       {/* Actions */}
-      <div className="flex flex-wrap items-center justify-between gap-3 pt-2 border-t border-white/10">
+      <div className="flex flex-wrap items-center justify-between gap-3 pt-2 border-t border-[#E5E7EB] dark:border-[#111A33]">
         <button
           onClick={onReset}
-          className="px-4 py-2.5 rounded-xl bg-white/10 hover:bg-white/15 text-xs font-semibold text-slate-300 hover:text-white transition-all flex items-center gap-1.5"
+          className="px-4 py-2.5 rounded-xl bg-white/10 hover:bg-white/15 text-xs font-semibold text-gray-500 dark:text-[#71809A] hover:text-[#102A56] dark:text-[#F8FAFC] transition-all flex items-center gap-1.5"
         >
           <RefreshCw className="w-3.5 h-3.5" /> Reset Analysis
         </button>
@@ -107,7 +107,7 @@ export const AIResultCard: React.FC<AIResultCardProps> = ({ analysis, onReset, o
         <button
           onClick={handleCreateTicket}
           disabled={creatingTicket}
-          className="px-6 py-2.5 rounded-xl bg-gradient-to-r from-brand-blue via-brand-violet to-brand-purple text-white font-bold text-xs shadow-lg shadow-brand-violet/25 hover:opacity-95 transition-all flex items-center gap-2"
+          className="px-6 py-2.5 rounded-xl bg-gradient-to-r from-brand-blue via-brand-violet to-brand-purple text-[#102A56] dark:text-[#F8FAFC] font-bold text-xs shadow-lg shadow-brand-violet/25 hover:opacity-95 transition-all flex items-center gap-2"
         >
           {creatingTicket ? 'Creating Ticket...' : 'Convert to Support Ticket'} <Ticket className="w-4 h-4" />
         </button>

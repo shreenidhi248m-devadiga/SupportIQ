@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import CustomerLayout from '../components/customer/CustomerLayout';
+import UserLayout from '../components/customer/UserLayout';
 import TicketTimeline from '../components/customer/TicketTimeline';
 import { ArrowLeft, Send, Bot, User as UserIcon, CheckCircle2, Clock } from 'lucide-react';
+import { useAuth } from '../context/AuthContext';
 import ticketApi from '../services/ticketApi';
 import { Ticket, Message, AIAnalysis } from '../types';
 
 export const TicketDetailsPage: React.FC = () => {
   const { ticketId } = useParams<{ ticketId: string }>();
   const navigate = useNavigate();
+  const { user } = useAuth();
 
   const [ticket, setTicket] = useState<Ticket | null>(null);
   const [aiAnalysis, setAiAnalysis] = useState<AIAnalysis | null>(null);
@@ -52,31 +54,31 @@ export const TicketDetailsPage: React.FC = () => {
 
   if (loading) {
     return (
-      <CustomerLayout>
+      <UserLayout>
         <div className="p-12 text-center text-xs font-mono text-slate-400">Loading ticket details...</div>
-      </CustomerLayout>
+      </UserLayout>
     );
   }
 
   if (!ticket) {
     return (
-      <CustomerLayout>
+      <UserLayout>
         <div className="p-12 text-center space-y-3">
           <p className="text-base font-bold text-white">Ticket Not Found</p>
-          <button onClick={() => navigate('/customer/tickets')} className="px-4 py-2 bg-brand-violet rounded-xl text-xs font-bold">
+          <button onClick={() => navigate(user?.role === 'admin' ? '/admin/tickets' : '/user/tickets')} className="px-4 py-2 bg-brand-violet rounded-xl text-xs font-bold">
             Back to My Tickets
           </button>
         </div>
-      </CustomerLayout>
+      </UserLayout>
     );
   }
 
   return (
-    <CustomerLayout>
+    <UserLayout>
       <div className="space-y-6 text-left">
         {/* Header Back Button */}
         <button
-          onClick={() => navigate('/customer/tickets')}
+          onClick={() => navigate(user?.role === 'admin' ? '/admin/tickets' : '/user/tickets')}
           className="text-xs font-mono text-slate-400 hover:text-white flex items-center gap-1.5 transition-colors"
         >
           <ArrowLeft className="w-4 h-4" /> Back to My Tickets
@@ -147,7 +149,7 @@ export const TicketDetailsPage: React.FC = () => {
           </form>
         </div>
       </div>
-    </CustomerLayout>
+    </UserLayout>
   );
 };
 

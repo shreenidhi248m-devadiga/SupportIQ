@@ -5,11 +5,11 @@ import LogoutConfirmModal from '../auth/LogoutConfirmModal';
 import { useAuth } from '../../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 
-interface CustomerLayoutProps {
+interface UserLayoutProps {
   children: React.ReactNode;
 }
 
-export const CustomerLayout: React.FC<CustomerLayoutProps> = ({ children }) => {
+export const UserLayout: React.FC<UserLayoutProps> = ({ children }) => {
   const navigate = useNavigate();
   const { logout } = useAuth();
   const [showLogoutModal, setShowLogoutModal] = useState(false);
@@ -21,7 +21,7 @@ export const CustomerLayout: React.FC<CustomerLayoutProps> = ({ children }) => {
   };
 
   return (
-    <div className="min-h-screen flex bg-[#040612] text-slate-100 font-sans selection:bg-brand-violet selection:text-white">
+    <div className="min-h-screen flex bg-[#F8FAFC] dark:bg-[#080D1F] text-[#102A56] dark:text-[#F8FAFC] font-sans selection:bg-[#EFF6FF] selection:text-[#2563EB]">
       {/* Desktop Sidebar */}
       <div className="hidden lg:block">
         <Sidebar onLogoutClick={() => setShowLogoutModal(true)} />
@@ -45,4 +45,4 @@ export const CustomerLayout: React.FC<CustomerLayoutProps> = ({ children }) => {
   );
 };
 
-export default CustomerLayout;
+export default UserLayout;

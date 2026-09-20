@@ -10,9 +10,9 @@ export const AccessDeniedPage: React.FC = () => {
 
   const handleReturn = () => {
     if (user?.role === 'admin') {
-      navigate('/admin/dashboard');
+      navigate('/admin');
     } else if (user?.role === 'customer') {
-      navigate('/customer/dashboard');
+      navigate('/user');
     } else {
       navigate('/login');
     }

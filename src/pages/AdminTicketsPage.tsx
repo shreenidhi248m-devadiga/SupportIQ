@@ -160,7 +160,7 @@ export const AdminTicketsPage: React.FC = () => {
                         <Edit3 className="w-4 h-4" />
                       </button>
                       <Link
-                        to={`/customer/tickets/${ticket.ticketId}`}
+                        to={`/admin/tickets/${ticket.ticketId}`}
                         className="inline-block p-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-brand-blue"
                         title="Open Details"
                       >

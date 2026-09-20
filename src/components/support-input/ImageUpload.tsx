@@ -100,18 +100,18 @@ export const ImageUpload: React.FC<ImageUploadProps> = ({ onAnalysisComplete, on
   };
 
   return (
-    <div className="w-full flex flex-col items-center justify-center p-6 md:p-8 bg-slate-900/40 border border-white/5 rounded-3xl min-h-[400px]">
+    <div className="w-full flex flex-col items-center justify-center p-6 md:p-8 bg-white dark:bg-slate-900/40 border border-slate-200 dark:border-white/5 rounded-3xl min-h-[400px]">
       
       {!file && (
         <div className="text-center w-full max-w-xl animate-fade-in">
-          <h3 className="text-2xl font-bold text-white mb-2">Add an image</h3>
-          <p className="text-slate-400 mb-8">Upload a photo, screenshot, receipt, or other image related to your issue.</p>
+          <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-2">Add an image</h3>
+          <p className="text-slate-500 dark:text-slate-400 mb-8">Upload a photo, screenshot, receipt, or other image related to your issue.</p>
           
           <div 
             className={`w-full border-2 border-dashed rounded-2xl p-12 transition-all duration-300 cursor-pointer flex flex-col items-center justify-center ${
               dragActive 
                 ? 'border-brand-blue bg-brand-blue/5' 
-                : 'border-white/10 hover:border-brand-blue/50 hover:bg-white/5'
+                : 'border-slate-300 dark:border-white/10 hover:border-brand-blue/50 hover:bg-slate-50 dark:hover:bg-white/5'
             }`}
             onDragEnter={handleDrag}
             onDragLeave={handleDrag}
@@ -131,10 +131,10 @@ export const ImageUpload: React.FC<ImageUploadProps> = ({ onAnalysisComplete, on
               <ImageIcon className="w-8 h-8" />
             </div>
             
-            <h4 className="text-lg font-semibold text-white mb-2">Drop your image here</h4>
+            <h4 className="text-lg font-semibold text-slate-900 dark:text-white mb-2">Drop your image here</h4>
             <p className="text-sm text-slate-500 mb-6">or</p>
             
-            <button className="px-6 py-2 rounded-lg bg-white/10 text-white font-medium hover:bg-white/20 transition-colors mb-6">
+            <button className="px-6 py-2 rounded-lg bg-slate-100 dark:bg-white/10 text-slate-900 dark:text-white font-medium hover:bg-slate-200 dark:hover:bg-white/20 transition-colors mb-6">
               Browse Files
             </button>
             
@@ -166,7 +166,7 @@ export const ImageUpload: React.FC<ImageUploadProps> = ({ onAnalysisComplete, on
           
           <button 
             onClick={analyzeImage}
-            className="w-full py-3.5 rounded-xl bg-gradient-to-r from-brand-blue to-brand-cyan text-white font-bold text-sm shadow-[0_0_20px_rgba(56,189,248,0.3)] hover:opacity-90 transition-all flex items-center justify-center gap-2"
+            className="w-full py-3.5 rounded-xl bg-[#2563EB] hover:bg-blue-700 text-white font-bold text-sm shadow-lg shadow-brand-blue/25 transition-all flex items-center justify-center gap-2"
           >
             <Search className="w-4 h-4" /> Analyze Image
           </button>
@@ -185,12 +185,12 @@ export const ImageUpload: React.FC<ImageUploadProps> = ({ onAnalysisComplete, on
                />
             </div>
             <div>
-              <h3 className="text-xl font-bold text-white">Analyzing your image</h3>
+              <h3 className="text-xl font-bold text-slate-900 dark:text-white">Analyzing your image</h3>
               <p className="text-brand-cyan text-sm animate-pulse">Computer Vision active...</p>
             </div>
           </div>
           
-          <div className="space-y-4 bg-slate-900/60 p-6 rounded-2xl border border-white/5">
+          <div className="space-y-4 bg-slate-50 dark:bg-slate-900/60 p-6 rounded-2xl border border-slate-200 dark:border-white/5">
             <div className="flex items-center gap-3 text-emerald-400 text-sm"><Check className="w-4 h-4" /> Image uploaded</div>
             <div className="flex items-center gap-3 text-emerald-400 text-sm"><Check className="w-4 h-4" /> Image quality checked</div>
             

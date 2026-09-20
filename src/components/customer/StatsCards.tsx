@@ -18,8 +18,8 @@ export const StatsCards: React.FC<StatsCardsProps> = ({ tickets, loading = false
       label: 'Total Tickets',
       value: total,
       desc: 'All your support requests',
-      icon: <Ticket className="w-5 h-5 text-brand-blue" />,
-      border: 'border-brand-blue/30',
+      icon: <Ticket className="w-5 h-5 text-[#2563EB]" />,
+      border: 'border-[#2563EB]/20 dark:border-[#2563EB]/20',
       glow: 'shadow-brand-blue/10',
     },
     {
@@ -42,7 +42,7 @@ export const StatsCards: React.FC<StatsCardsProps> = ({ tickets, loading = false
       label: 'Average Response',
       value: avgResponseTime,
       desc: 'Recent support response time',
-      icon: <AlertCircle className="w-5 h-5 text-brand-cyan" />,
+      icon: <AlertCircle className="w-5 h-5 text-[#2563EB]" />,
       border: 'border-brand-cyan/30',
       glow: 'shadow-brand-cyan/10',
     },
@@ -52,9 +52,9 @@ export const StatsCards: React.FC<StatsCardsProps> = ({ tickets, loading = false
     return (
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         {[1, 2, 3, 4].map((i) => (
-          <div key={i} className="h-28 rounded-2xl bg-slate-900/60 border border-white/10 animate-pulse p-4 space-y-3">
-            <div className="h-4 bg-slate-800 rounded w-1/2" />
-            <div className="h-8 bg-slate-800 rounded w-1/3" />
+          <div key={i} className="h-28 rounded-2xl bg-white dark:bg-[#111A33] border border-[#E5E7EB] dark:border-[#111A33] animate-pulse p-4 space-y-3">
+            <div className="h-4 bg-[#F8FAFC] dark:bg-[#1A2340] rounded w-1/2" />
+            <div className="h-8 bg-[#F8FAFC] dark:bg-[#1A2340] rounded w-1/3" />
           </div>
         ))}
       </div>
@@ -66,13 +66,13 @@ export const StatsCards: React.FC<StatsCardsProps> = ({ tickets, loading = false
       {stats.map((stat) => (
         <div
           key={stat.label}
-          className={`p-5 rounded-2xl bg-slate-900/70 border ${stat.border} backdrop-blur-xl shadow-lg ${stat.glow} space-y-2 hover:border-white/20 transition-all`}>
+          className={`p-5 rounded-2xl bg-white dark:bg-[#111A33] border ${stat.border} backdrop-blur-xl shadow-lg ${stat.glow} space-y-2 hover:border-white/20 transition-all`}>
           <div className="flex items-center justify-between">
-            <span className="text-xs font-mono text-slate-400 uppercase tracking-wider">{stat.label}</span>
-            <div className="p-2 rounded-xl bg-white/5">{stat.icon}</div>
+            <span className="text-sm font-bold font-mono text-gray-700 dark:text-[#A8B3C7] uppercase tracking-wider">{stat.label}</span>
+            <div className="p-2 rounded-xl bg-[#F8FAFC] dark:bg-[#111A33]">{stat.icon}</div>
           </div>
-          <p className="text-2xl font-extrabold text-white tracking-tight">{stat.value}</p>
-          <p className="text-[11px] text-slate-400">{stat.desc}</p>
+          <p className="text-3xl font-extrabold text-[#102A56] dark:text-[#F8FAFC] tracking-tight">{stat.value}</p>
+          <p className="text-xs text-gray-600 dark:text-[#A8B3C7]">{stat.desc}</p>
         </div>
       ))}
     </div>

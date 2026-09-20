@@ -70,19 +70,19 @@ export const VoiceInput: React.FC<VoiceInputProps> = ({ onTranscriptionComplete,
   };
 
   return (
-    <div className="w-full flex flex-col items-center justify-center p-8 bg-slate-900/40 border border-white/5 rounded-3xl min-h-[400px]">
+    <div className="w-full flex flex-col items-center justify-center p-8 bg-white dark:bg-slate-900/40 border border-slate-200 dark:border-white/5 rounded-3xl min-h-[400px]">
       
       {!isRecording && !isProcessing && !transcription && (
         <div className="text-center">
-          <h3 className="text-2xl font-bold text-white mb-2">Tell us what happened</h3>
-          <p className="text-slate-400 mb-12">Speak naturally. You don't need to explain everything perfectly.</p>
+          <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-2">Tell us what happened</h3>
+          <p className="text-slate-500 dark:text-slate-400 mb-12">Speak naturally. You don't need to explain everything perfectly.</p>
           
           <button 
             onClick={startRecording}
-            className="group relative w-32 h-32 flex items-center justify-center rounded-full bg-brand-violet/10 border-2 border-brand-violet/50 text-brand-violet hover:bg-brand-violet/20 hover:scale-105 transition-all duration-300 mx-auto"
+            className="group relative w-32 h-32 flex items-center justify-center rounded-full bg-blue-50 dark:bg-blue-900/20 border-2 border-[#2563EB]/50 text-[#2563EB] dark:text-blue-400 hover:bg-blue-100 dark:hover:bg-blue-900/40 hover:scale-105 transition-all duration-300 mx-auto"
           >
             <Mic className="w-12 h-12" />
-            <div className="absolute -bottom-8 whitespace-nowrap font-medium text-slate-300 group-hover:text-white transition-colors">
+            <div className="absolute -bottom-8 whitespace-nowrap font-medium text-slate-600 dark:text-slate-300 group-hover:text-slate-900 dark:group-hover:text-white transition-colors">
               🎙 Tap to speak
             </div>
           </button>
@@ -96,7 +96,7 @@ export const VoiceInput: React.FC<VoiceInputProps> = ({ onTranscriptionComplete,
             Recording
           </div>
           
-          <div className="text-3xl font-mono text-white mb-12 font-light">
+          <div className="text-3xl font-mono text-slate-900 dark:text-white mb-12 font-light">
             {formatTime(elapsedTime)} <span className="text-slate-500">/ 02:00</span>
           </div>
 
@@ -136,7 +136,7 @@ export const VoiceInput: React.FC<VoiceInputProps> = ({ onTranscriptionComplete,
           >
             <Brain className="w-8 h-8 text-brand-violet" />
           </motion.div>
-          <h3 className="text-xl font-bold text-white mb-2">Understanding your voice...</h3>
+          <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-2">Understanding your voice...</h3>
           <p className="text-brand-violet/80 animate-pulse">Transcribing your request</p>
         </div>
       )}
@@ -144,15 +144,15 @@ export const VoiceInput: React.FC<VoiceInputProps> = ({ onTranscriptionComplete,
       {transcription && !isProcessing && (
         <div className="w-full max-w-2xl text-left animate-fade-in">
           <div className="mb-6">
-            <h3 className="text-lg font-bold text-white mb-4">Your request</h3>
+            <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-4">Your request</h3>
             <textarea 
               value={transcription}
               onChange={handleEditTranscript}
-              className="w-full bg-slate-950/50 border border-white/10 rounded-xl p-4 text-slate-200 text-lg leading-relaxed focus:outline-none focus:border-brand-violet resize-none min-h-[120px]"
+              className="w-full bg-slate-50 dark:bg-slate-950/50 border border-slate-200 dark:border-white/10 rounded-xl p-4 text-slate-700 dark:text-slate-200 text-lg leading-relaxed focus:outline-none focus:border-brand-violet resize-none min-h-[120px]"
             />
           </div>
 
-          <div className="bg-slate-900/60 rounded-xl p-4 border border-white/5 mb-8">
+          <div className="bg-slate-50 dark:bg-slate-900/60 rounded-xl p-4 border border-slate-200 dark:border-white/5 mb-8">
             <div className="text-xs font-mono text-brand-violet uppercase tracking-wider mb-3 flex items-center gap-2">
               <Brain className="w-4 h-4" /> SupportIQ AI
             </div>
@@ -168,13 +168,13 @@ export const VoiceInput: React.FC<VoiceInputProps> = ({ onTranscriptionComplete,
           <div className="flex flex-col sm:flex-row gap-4">
             <button 
               onClick={handleUseRequest}
-              className="flex-1 py-3.5 rounded-xl bg-gradient-to-r from-brand-blue to-brand-violet text-white font-bold text-sm shadow-[0_0_20px_rgba(139,92,246,0.3)] hover:opacity-90 transition-all flex items-center justify-center gap-2"
+              className="flex-1 py-3.5 rounded-xl bg-[#2563EB] hover:bg-blue-700 text-white font-bold text-sm shadow-lg shadow-brand-blue/25 transition-all flex items-center justify-center gap-2"
             >
               Use This Request
             </button>
             <button 
               onClick={() => { setTranscription(null); if(onCombinedStateChange) onCombinedStateChange(''); }}
-              className="py-3.5 px-6 rounded-xl bg-slate-800 text-slate-300 font-semibold text-sm hover:bg-slate-700 transition-all flex items-center justify-center gap-2"
+              className="py-3.5 px-6 rounded-xl bg-blue-50 text-blue-700 border border-blue-200 hover:bg-blue-100 dark:bg-[#2563EB]/20 dark:text-blue-300 dark:border-[#2563EB]/50 dark:hover:bg-[#2563EB]/40 font-semibold text-sm transition-all flex items-center justify-center gap-2"
             >
               <RotateCcw className="w-4 h-4" /> Record Again
             </button>

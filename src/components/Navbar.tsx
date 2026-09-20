@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import { Sparkles, Shield, Rocket, User as UserIcon, LogOut, Ticket, Cpu, BarChart2, Bell, LayoutDashboard, CheckCircle, AlertCircle } from 'lucide-react';
+import { Sparkles, Shield, Rocket, User as UserIcon, LogOut, Ticket, Cpu, BarChart2, Bell, LayoutDashboard, CheckCircle, AlertCircle, ChevronDown, Moon, Sun } from 'lucide-react';
 import api from '../services/api';
 import LogoutConfirmModal from './auth/LogoutConfirmModal';
 
@@ -13,6 +13,17 @@ export const Navbar: React.FC = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [showLogoutModal, setShowLogoutModal] = useState(false);
   const [apiOnline, setApiOnline] = useState<boolean | null>(null);
+  const [showProfileDropdown, setShowProfileDropdown] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(false);
+
+  const toggleTheme = () => {
+    setIsDarkMode(!isDarkMode);
+    if (!isDarkMode) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  };
 
   useEffect(() => {
     const checkHealth = async () => {
@@ -41,21 +52,19 @@ export const Navbar: React.FC = () => {
   const isActive = (path: string) => location.pathname === path;
 
   return (
-    <header className="sticky top-0 z-50 backdrop-blur-xl bg-[#040612]/80 border-b border-white/10 transition-all duration-300">
+    <header className="sticky top-0 z-50 bg-white dark:bg-[#0D1428] border-b border-[#E5E7EB] dark:border-[#1E293B] transition-all duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           
-          {/* Logo */}
+          {/* Left: Logo */}
           <Link to="/" className="flex items-center space-x-3 group">
-            <div className="relative w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-blue to-brand-violet p-0.5 shadow-lg shadow-brand-violet/25 group-hover:scale-105 transition-transform duration-300">
-              <div className="w-full h-full bg-[#040612] rounded-[10px] flex items-center justify-center">
-                <Sparkles className="w-5 h-5 text-brand-blue group-hover:rotate-12 transition-transform duration-300" />
-              </div>
+            <div className="w-10 h-10 rounded-xl bg-[#102A56] flex items-center justify-center shadow-sm">
+              <Sparkles className="w-5 h-5 text-white" />
             </div>
             <div className="flex flex-col">
-              <span className="font-extrabold text-xl tracking-tight text-white flex items-center gap-1.5">
-                Support<span className="text-gradient font-mono">IQ</span>
-                <span className="text-[10px] uppercase tracking-widest font-mono font-semibold px-2 py-0.5 rounded-full bg-brand-violet/20 text-brand-violet border border-brand-violet/30">
+              <span className="font-extrabold text-xl tracking-tight text-[#102A56] dark:text-[#F8FAFC] flex items-center gap-1.5">
+                Support<span className="text-[#2563EB] font-mono">IQ</span>
+                <span className="text-[10px] uppercase tracking-widest font-mono font-semibold px-2 py-0.5 rounded-full bg-[#EFF6FF] dark:bg-[#111A33] text-[#2563EB] border border-[#2563EB]/20">
                   AI 2.0
                 </span>
               </span>
@@ -63,55 +72,48 @@ export const Navbar: React.FC = () => {
           </Link>
 
           {/* API Health Indicator */}
-          <div className="hidden lg:flex items-center space-x-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-mono">
+          <div className="hidden lg:flex items-center space-x-2 px-3 py-1 rounded-full bg-[#F8FAFC] dark:bg-[#111A33] border border-[#E5E7EB] dark:border-[#1E293B] text-xs font-mono text-[#102A56] dark:text-gray-300">
             <span>SupportIQ API</span>
             {apiOnline === true ? (
-              <span className="flex items-center text-emerald-400 font-semibold gap-1">
-                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span> Online
+              <span className="flex items-center text-emerald-600 font-semibold gap-1">
+                <span className="w-2 h-2 rounded-full bg-emerald-500"></span> Online
               </span>
             ) : apiOnline === false ? (
-              <span className="flex items-center text-rose-400 font-semibold gap-1">
-                <span className="w-2 h-2 rounded-full bg-rose-500"></span> Offline
+              <span className="flex items-center text-red-600 font-semibold gap-1">
+                <span className="w-2 h-2 rounded-full bg-red-500"></span> Offline
               </span>
             ) : (
-              <span className="text-slate-400">Connecting...</span>
+              <span className="text-gray-400">Connecting...</span>
             )}
           </div>
 
-          {/* Navigation Links */}
-          <nav className="hidden md:flex items-center space-x-1">
+          {/* Middle: Navigation Links */}
+          <nav className="hidden md:flex items-center space-x-2">
             <Link
               to="/"
               className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
-                isActive('/') ? 'text-white bg-white/10' : 'text-slate-300 hover:text-white hover:bg-white/5'
+                isActive('/') ? 'text-[#2563EB] bg-[#EFF6FF] font-semibold' : 'text-gray-500 dark:text-[#71809A] hover:text-[#102A56] hover:bg-[#F8FAFC]'
               }`}
             >
               Overview
             </Link>
 
-            <Link
-              to="/ai-support"
-              className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors flex items-center gap-1.5 ${
-                isActive('/ai-support') ? 'text-brand-blue bg-brand-blue/10 border border-brand-blue/30' : 'text-slate-300 hover:text-white hover:bg-white/5'
-              }`}
-            >
-              <Cpu className="w-4 h-4 text-brand-blue" /> AI Playground
-            </Link>
+
 
             {isAuthenticated && role === 'customer' && (
               <>
                 <Link
-                  to="/customer/dashboard"
+                  to="/user"
                   className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors flex items-center gap-1.5 ${
-                    isActive('/customer/dashboard') ? 'text-brand-violet bg-brand-violet/10 border border-brand-violet/30' : 'text-slate-300 hover:text-white hover:bg-white/5'
+                    isActive('/user') ? 'text-[#2563EB] bg-[#EFF6FF] font-semibold' : 'text-gray-500 dark:text-[#71809A] hover:text-[#102A56] hover:bg-[#F8FAFC]'
                   }`}
                 >
                   <LayoutDashboard className="w-4 h-4" /> Dashboard
                 </Link>
                 <Link
-                  to="/customer/tickets"
+                  to="/user/tickets"
                   className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors flex items-center gap-1.5 ${
-                    isActive('/customer/tickets') ? 'text-brand-violet bg-brand-violet/10 border border-brand-violet/30' : 'text-slate-300 hover:text-white hover:bg-white/5'
+                    isActive('/user/tickets') ? 'text-[#2563EB] bg-[#EFF6FF] font-semibold' : 'text-gray-500 dark:text-[#71809A] hover:text-[#102A56] hover:bg-[#F8FAFC]'
                   }`}
                 >
                   <Ticket className="w-4 h-4" /> My Tickets
@@ -122,17 +124,17 @@ export const Navbar: React.FC = () => {
             {isAuthenticated && role === 'admin' && (
               <>
                 <Link
-                  to="/admin/dashboard"
+                  to="/admin"
                   className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors flex items-center gap-1.5 ${
-                    isActive('/admin/dashboard') ? 'text-brand-cyan bg-brand-cyan/10 border border-brand-cyan/30' : 'text-slate-300 hover:text-white hover:bg-white/5'
+                    isActive('/admin') ? 'text-[#2563EB] bg-[#EFF6FF] font-semibold' : 'text-gray-500 dark:text-[#71809A] hover:text-[#102A56] hover:bg-[#F8FAFC]'
                   }`}
                 >
-                  <BarChart2 className="w-4 h-4 text-brand-cyan" /> Admin Dashboard
+                  <BarChart2 className="w-4 h-4" /> Admin Dashboard
                 </Link>
                 <Link
                   to="/admin/tickets"
                   className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
-                    isActive('/admin/tickets') ? 'text-white bg-white/10' : 'text-slate-300 hover:text-white hover:bg-white/5'
+                    isActive('/admin/tickets') ? 'text-[#2563EB] bg-[#EFF6FF] font-semibold' : 'text-gray-500 dark:text-[#71809A] hover:text-[#102A56] hover:bg-[#F8FAFC]'
                   }`}
                 >
                   All Tickets
@@ -140,7 +142,7 @@ export const Navbar: React.FC = () => {
                 <Link
                   to="/admin/customers"
                   className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
-                    isActive('/admin/customers') ? 'text-white bg-white/10' : 'text-slate-300 hover:text-white hover:bg-white/5'
+                    isActive('/admin/customers') ? 'text-[#2563EB] bg-[#EFF6FF] font-semibold' : 'text-gray-500 dark:text-[#71809A] hover:text-[#102A56] hover:bg-[#F8FAFC]'
                   }`}
                 >
                   Customers
@@ -148,64 +150,78 @@ export const Navbar: React.FC = () => {
                 <Link
                   to="/admin/security"
                   className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors flex items-center gap-1.5 ${
-                    isActive('/admin/security') ? 'text-rose-400 bg-rose-400/10 border border-rose-400/30' : 'text-slate-300 hover:text-white hover:bg-white/5'
+                    isActive('/admin/security') ? 'text-[#2563EB] bg-[#EFF6FF] font-semibold' : 'text-gray-500 dark:text-[#71809A] hover:text-[#102A56] hover:bg-[#F8FAFC]'
                   }`}
                 >
-                  <Shield className="w-4 h-4 text-rose-400" /> Security
+                  <Shield className="w-4 h-4" /> Security
                 </Link>
                 <Link
                   to="/admin/deployment"
                   className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors flex items-center gap-1.5 ${
-                    isActive('/admin/deployment') ? 'text-brand-blue bg-brand-blue/10 border border-brand-blue/30' : 'text-slate-300 hover:text-white hover:bg-white/5'
+                    isActive('/admin/deployment') ? 'text-[#2563EB] bg-[#EFF6FF] font-semibold' : 'text-gray-500 dark:text-[#71809A] hover:text-[#102A56] hover:bg-[#F8FAFC]'
                   }`}
                 >
-                  <Rocket className="w-4 h-4 text-brand-blue" /> Deployment
+                  <Rocket className="w-4 h-4" /> Deployment
                 </Link>
               </>
             )}
           </nav>
 
-          {/* User Auth Section */}
+          {/* Theme Toggle */}
+          <button onClick={toggleTheme} className="p-2 rounded-lg text-gray-500 dark:text-[#71809A] hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors mr-2 hidden md:block">
+            {isDarkMode ? <Moon className="w-5 h-5 text-gray-200" /> : <Sun className="w-5 h-5 text-amber-500" />}
+          </button>
+
+          {/* Right: User Auth / Profile */}
           <div className="hidden md:flex items-center space-x-4">
             {isAuthenticated ? (
-              <div className="flex items-center space-x-3">
-                <Link
-                  to={role === 'admin' ? '/admin/dashboard' : '/customer/profile'}
-                  className="flex items-center space-x-2 px-3 py-1.5 rounded-xl bg-white/5 border border-white/10 hover:border-brand-violet/50 transition-all"
+              <div className="relative">
+                <button 
+                  onClick={() => setShowProfileDropdown(!showProfileDropdown)}
+                  className="flex items-center space-x-3 px-2 py-1.5 rounded-lg hover:bg-[#F8FAFC] dark:hover:bg-[#111A33] transition-colors"
                 >
-                  <div className="w-8 h-8 rounded-lg bg-gradient-to-tr from-brand-violet to-brand-blue flex items-center justify-center font-bold text-white text-xs">
+                  <div className="w-9 h-9 rounded-full bg-[#EFF6FF] text-[#2563EB] flex items-center justify-center font-bold text-sm border border-[#2563EB]/20">
                     {user?.name ? user.name.charAt(0).toUpperCase() : 'U'}
                   </div>
-                  <div className="text-left text-xs">
-                    <p className="font-semibold text-white truncate max-w-[100px]">{user?.name}</p>
-                    <p className="text-[10px] text-brand-cyan uppercase font-mono font-bold">{user?.role}</p>
+                  <div className="text-left text-xs hidden lg:block">
+                    <p className="font-semibold text-[#102A56] dark:text-[#F8FAFC] truncate max-w-[120px]">{user?.name}</p>
+                    <p className="text-[10px] text-gray-500 dark:text-[#71809A] uppercase font-bold tracking-wider">{user?.role}</p>
                   </div>
-                </Link>
-
-                <button
-                  onClick={() => setShowLogoutModal(true)}
-                  className="p-2 rounded-xl text-slate-400 hover:text-rose-400 hover:bg-rose-500/10 transition-colors"
-                  title="Sign Out"
-                >
-                  <LogOut className="w-5 h-5" />
+                  <ChevronDown className="w-4 h-4 text-gray-400" />
                 </button>
+                
+                {/* Profile Dropdown */}
+                {showProfileDropdown && (
+                  <div className="absolute right-0 mt-2 w-48 bg-white dark:bg-[#0D1428] border border-[#E5E7EB] rounded-xl shadow-lg py-1 z-50">
+                    <Link
+                      to={role === 'admin' ? '/admin' : '/user/profile'}
+                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-[#F8FAFC] hover:text-[#2563EB]"
+                      onClick={() => setShowProfileDropdown(false)}
+                    >
+                      My Profile
+                    </Link>
+                    <button
+                      onClick={() => { setShowProfileDropdown(false); setShowLogoutModal(true); }}
+                      className="w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50 flex items-center gap-2"
+                    >
+                      <LogOut className="w-4 h-4" /> Sign Out
+                    </button>
+                  </div>
+                )}
               </div>
             ) : (
               <div className="flex items-center space-x-3">
                 <Link
                   to="/login"
-                  className="px-4 py-2.5 rounded-xl text-sm font-medium text-slate-200 hover:text-white hover:bg-white/5 transition-colors"
+                  className="px-4 py-2 rounded-lg text-sm font-medium text-gray-600 dark:text-[#A8B3C7] hover:text-[#102A56] dark:hover:text-white hover:bg-[#F8FAFC] dark:hover:bg-[#111A33] transition-colors"
                 >
                   Sign In
                 </Link>
                 <Link
                   to="/register"
-                  className="relative group px-5 py-2.5 rounded-xl text-sm font-semibold text-white overflow-hidden shadow-lg shadow-brand-violet/20"
+                  className="btn-primary px-5 py-2 rounded-lg text-sm flex items-center gap-1.5"
                 >
-                  <div className="absolute inset-0 bg-gradient-to-r from-brand-blue via-brand-violet to-brand-purple transition-transform duration-300 group-hover:scale-105"></div>
-                  <span className="relative flex items-center gap-1.5">
-                    Get Started <Sparkles className="w-4 h-4" />
-                  </span>
+                  Get Started <Sparkles className="w-4 h-4" />
                 </Link>
               </div>
             )}

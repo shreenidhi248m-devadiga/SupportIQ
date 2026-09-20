@@ -1,29 +1,26 @@
 import React from 'react';
-import { Navigate, Outlet } from 'react-router-dom';
+import { Navigate, Outlet, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import LoadingSpinner from './LoadingSpinner';
 
-interface ProtectedRouteProps {
-  allowedRole?: 'customer' | 'admin';
-}
-
-export const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ allowedRole }) => {
-  const { isAuthenticated, role, loading } = useAuth();
+export const ProtectedRoute: React.FC = () => {
+  const { isAuthenticated, loading } = useAuth();
+  const location = useLocation();
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-[#040612] flex items-center justify-center">
+      <div className="min-h-screen bg-[#F8FAFC] dark:bg-[#080D1F] flex items-center justify-center">
         <LoadingSpinner text="Authenticating SupportIQ..." />
       </div>
     );
   }
 
   if (!isAuthenticated) {
-    return <Navigate to="/login" replace />;
-  }
-
-  if (allowedRole && role !== allowedRole) {
-    return <Navigate to="/access-denied" replace />;
+    // Redirect to the role-specific login page based on the current URL
+    if (location.pathname.startsWith('/admin')) {
+      return <Navigate to="/admin/login" replace />;
+    }
+    return <Navigate to="/user/login" replace />;
   }
 
   return <Outlet />;

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import CustomerLayout from '../components/customer/CustomerLayout';
+import UserLayout from '../components/customer/UserLayout';
 import { AlertCircle } from 'lucide-react';
 import { AIProcessingOverlay } from '../components/ai/AIProcessingOverlay';
 import { MultiModalInput } from '../components/support-input/MultiModalInput';
@@ -56,13 +56,13 @@ export const CreateTicketPage: React.FC = () => {
         description={ticketPayload.description}
         attachment={ticketPayload.attachment}
         onCancel={() => setIsProcessing(false)}
-        onViewTicket={(ticketId) => navigate(`/customer/tickets/${ticketId}`)}
+        onViewTicket={(ticketId) => navigate(`/user/tickets/${ticketId}`)}
       />
     );
   }
 
   return (
-    <CustomerLayout>
+    <UserLayout>
       <div className="ticket-page-container w-full max-w-6xl mx-auto py-8">
         <div className="ticket-header mb-12">
           <div className="text-xs text-slate-400 font-mono mb-4 text-center md:text-left">Dashboard / Create Ticket</div>
@@ -81,7 +81,7 @@ export const CreateTicketPage: React.FC = () => {
            <p className="text-xs font-mono text-slate-400">Your information is securely processed to assist with your request.</p>
         </div>
       </div>
-    </CustomerLayout>
+    </UserLayout>
   );
 };
 

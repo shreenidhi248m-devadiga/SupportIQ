@@ -164,7 +164,7 @@ export const SecurityDashboardPage: React.FC = () => {
                       </div>
                       <span className="text-slate-200">{control.name}</span>
                     </div>
-                    {getStatusIcon(control.status)}
+                    {getStatusIcon(control.status as any)}
                   </div>
                 ))}
               </div>

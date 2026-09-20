@@ -38,7 +38,7 @@ export const EmailVerification: React.FC = () => {
   const handleConfirmVerified = () => {
     setVerified(true);
     setTimeout(() => {
-      navigate('/customer/dashboard');
+      navigate('/user');
     }, 1000);
   };
 

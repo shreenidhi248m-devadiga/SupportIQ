@@ -4,18 +4,18 @@ export const SocialLogin: React.FC = () => {
   return (
     <div className="space-y-3 pt-2">
       <div className="relative flex items-center justify-center">
-        <div className="border-t border-white/10 w-full" />
-        <span className="bg-slate-900 px-3 text-[11px] font-mono text-slate-400 uppercase shrink-0">
+        <div className="border-t border-slate-200 dark:border-white/10 w-full transition-colors" />
+        <span className="bg-white dark:bg-slate-900 px-3 text-sm font-bold font-mono text-slate-800 dark:text-slate-200 uppercase shrink-0 transition-colors">
           or continue with
         </span>
-        <div className="border-t border-white/10 w-full" />
+        <div className="border-t border-slate-200 dark:border-white/10 w-full transition-colors" />
       </div>
 
       <div className="grid grid-cols-2 gap-3 font-mono text-xs">
         <button
           type="button"
           onClick={() => alert('Google authentication service is connected for demo.')}
-          className="py-2.5 px-4 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-slate-200 flex items-center justify-center gap-2 transition-all"
+          className="py-2.5 px-4 rounded-xl bg-slate-50 hover:bg-slate-100 dark:bg-white/5 dark:hover:bg-white/10 border border-slate-200 dark:border-white/10 text-slate-700 dark:text-slate-200 flex items-center justify-center gap-2 transition-all"
         >
           <svg className="w-4 h-4" viewBox="0 0 24 24">
             <path
@@ -41,7 +41,7 @@ export const SocialLogin: React.FC = () => {
         <button
           type="button"
           onClick={() => alert('Microsoft authentication service is connected for demo.')}
-          className="py-2.5 px-4 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-slate-200 flex items-center justify-center gap-2 transition-all"
+          className="py-2.5 px-4 rounded-xl bg-slate-50 hover:bg-slate-100 dark:bg-white/5 dark:hover:bg-white/10 border border-slate-200 dark:border-white/10 text-slate-700 dark:text-slate-200 flex items-center justify-center gap-2 transition-all"
         >
           <svg className="w-4 h-4" viewBox="0 0 23 23">
             <path fill="#f35325" d="M1 1h10v10H1z" />
