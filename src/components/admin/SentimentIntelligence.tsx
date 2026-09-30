@@ -24,10 +24,10 @@ export const SentimentIntelligence: React.FC<SentimentIntelligenceProps> = ({ an
   ];
 
   return (
-    <div className="bg-slate-900/50 border border-white/5 rounded-2xl p-6 h-full flex flex-col">
+    <div className="bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-white/5 rounded-2xl p-6 h-full flex flex-col shadow-sm">
       <div className="flex items-center justify-between mb-6">
-        <h3 className="text-base font-bold text-white flex items-center gap-2">
-          <Smile className="w-4 h-4 text-emerald-400" /> Customer Sentiment
+        <h3 className="text-base font-bold text-slate-900 dark:text-white flex items-center gap-2">
+          <Smile className="w-4 h-4 text-emerald-500 dark:text-emerald-400" /> Customer Sentiment
         </h3>
       </div>
 
@@ -35,13 +35,13 @@ export const SentimentIntelligence: React.FC<SentimentIntelligenceProps> = ({ an
         {data.map((item) => (
           <div key={item.label} className="group">
             <div className="flex justify-between items-center mb-1.5 text-sm">
-              <span className="text-slate-300 font-medium">{item.label}</span>
+              <span className="text-slate-700 dark:text-slate-300 font-medium">{item.label}</span>
               <div className="flex items-center gap-3">
-                <span className="text-xs text-slate-500 font-mono">{item.count}</span>
+                <span className="text-xs text-slate-400 dark:text-slate-500 font-mono">{item.count}</span>
                 <span className={`font-mono font-bold ${item.color} w-8 text-right`}>{item.pct}%</span>
               </div>
             </div>
-            <div className="w-full h-1.5 bg-slate-800 rounded-full overflow-hidden">
+            <div className="w-full h-1.5 bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
               <div 
                 className={`h-full rounded-full ${item.bg} transition-all duration-1000 ease-out`} 
                 style={{ width: `${item.pct}%` }}
@@ -51,10 +51,10 @@ export const SentimentIntelligence: React.FC<SentimentIntelligenceProps> = ({ an
         ))}
       </div>
 
-      <div className="mt-6 pt-4 border-t border-white/5">
+      <div className="mt-6 pt-4 border-t border-slate-200 dark:border-white/5">
         <div className="flex items-center justify-between">
-          <span className="text-xs text-slate-400 font-semibold uppercase tracking-wider">Sentiment Trend</span>
-          <div className="flex items-center gap-1.5 text-xs font-medium text-emerald-400 bg-emerald-400/10 px-2 py-1 rounded-lg">
+          <span className="text-xs text-slate-500 dark:text-slate-400 font-semibold uppercase tracking-wider">Sentiment Trend</span>
+          <div className="flex items-center gap-1.5 text-xs font-medium text-emerald-700 bg-emerald-50 dark:text-emerald-400 dark:bg-emerald-400/10 px-2 py-1 rounded-lg border border-emerald-200 dark:border-transparent">
             <TrendingDown className="w-3.5 h-3.5" /> Negative sentiment down 12%
           </div>
         </div>

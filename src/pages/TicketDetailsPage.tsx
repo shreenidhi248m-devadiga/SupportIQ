@@ -79,25 +79,25 @@ export const TicketDetailsPage: React.FC = () => {
         {/* Header Back Button */}
         <button
           onClick={() => navigate(user?.role === 'admin' ? '/admin/tickets' : '/user/tickets')}
-          className="text-xs font-mono text-slate-400 hover:text-white flex items-center gap-1.5 transition-colors"
+          className="text-xs font-mono text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white flex items-center gap-1.5 transition-colors"
         >
           <ArrowLeft className="w-4 h-4" /> Back to My Tickets
         </button>
 
         {/* Ticket Title & Status */}
-        <div className="p-6 rounded-3xl bg-slate-900/70 border border-white/10 backdrop-blur-xl flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div className="p-6 rounded-2xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-white/10 shadow-sm flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div>
             <div className="flex items-center gap-2">
-              <span className="text-xs font-mono font-bold text-brand-cyan">#{ticket.ticketId}</span>
-              <span className="px-2.5 py-0.5 rounded-full bg-brand-violet/20 text-brand-cyan text-[10px] font-mono uppercase font-bold">
+              <span className="text-xs font-mono font-bold text-blue-600 dark:text-brand-cyan">#{ticket.ticketId}</span>
+              <span className="px-2.5 py-0.5 rounded-full bg-blue-50 dark:bg-brand-violet/20 text-blue-700 dark:text-brand-cyan border border-blue-200 dark:border-transparent text-[10px] font-mono uppercase font-bold">
                 {ticket.department}
               </span>
             </div>
-            <h1 className="text-xl font-extrabold text-white tracking-tight mt-1">{ticket.subject}</h1>
+            <h1 className="text-xl font-extrabold text-slate-900 dark:text-white tracking-tight mt-1">{ticket.subject}</h1>
           </div>
 
           <div className="flex items-center gap-2">
-            <span className="px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 text-xs font-mono capitalize">
+            <span className="px-3 py-1 rounded-full bg-emerald-50 dark:bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-500/30 text-xs font-mono capitalize font-bold">
               {ticket.status}
             </span>
           </div>
@@ -107,20 +107,20 @@ export const TicketDetailsPage: React.FC = () => {
         <TicketTimeline status={ticket.status} department={ticket.department} />
 
         {/* Message Thread */}
-        <div className="p-6 rounded-3xl bg-slate-900/70 border border-white/10 backdrop-blur-xl space-y-4">
-          <h3 className="text-xs font-mono text-slate-400 uppercase tracking-widest">Conversation History</h3>
+        <div className="p-6 rounded-2xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-white/10 shadow-sm space-y-4">
+          <h3 className="text-xs font-mono text-slate-500 dark:text-slate-400 uppercase tracking-widest font-semibold">Conversation History</h3>
 
           <div className="space-y-3 max-h-96 overflow-y-auto pr-1">
             {messages.map((msg, idx) => (
               <div
                 key={msg._id || idx}
-                className={`p-4 rounded-2xl text-xs space-y-1 backdrop-blur-md max-w-2xl ${
+                className={`p-4 rounded-2xl text-xs space-y-1 max-w-2xl ${
                   msg.senderRole === 'customer'
-                    ? 'bg-brand-violet/20 border border-brand-violet/30 text-white ml-auto text-right'
-                    : 'bg-slate-950 border border-white/10 text-slate-200 mr-auto text-left'
+                    ? 'bg-blue-50 dark:bg-brand-violet/20 border border-blue-200 dark:border-brand-violet/30 text-slate-900 dark:text-white ml-auto text-right'
+                    : 'bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-white/10 text-slate-800 dark:text-slate-200 mr-auto text-left'
                 }`}
               >
-                <div className="flex items-center gap-2 font-mono text-[10px] text-slate-400 mb-1">
+                <div className="flex items-center gap-2 font-mono text-[10px] text-slate-500 dark:text-slate-400 mb-1">
                   <span>{msg.senderRole === 'customer' ? 'You' : 'SupportIQ AI Assistant'}</span>
                   <span>•</span>
                   <span>{new Date(msg.createdAt || Date.now()).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
@@ -131,18 +131,18 @@ export const TicketDetailsPage: React.FC = () => {
           </div>
 
           {/* Send Reply Input */}
-          <form onSubmit={handleSendMessage} className="flex gap-2 pt-2 border-t border-white/10">
+          <form onSubmit={handleSendMessage} className="flex gap-2 pt-2 border-t border-slate-200 dark:border-white/10">
             <input
               type="text"
               value={newMessage}
               onChange={(e) => setNewMessage(e.target.value)}
               placeholder="Type your reply..."
-              className="flex-1 bg-slate-950/70 border border-white/10 rounded-xl px-4 py-2.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-brand-violet transition-all"
+              className="flex-1 bg-slate-50 dark:bg-slate-950/70 border border-slate-200 dark:border-white/10 rounded-xl px-4 py-2.5 text-xs text-slate-900 dark:text-white placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all font-mono"
             />
             <button
               type="submit"
               disabled={sending || !newMessage.trim()}
-              className="px-5 py-2.5 rounded-xl bg-brand-violet text-white font-bold text-xs hover:opacity-95 disabled:opacity-50 transition-all flex items-center gap-1.5"
+              className="px-5 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs disabled:opacity-50 transition-all flex items-center gap-1.5 shadow-sm"
             >
               Send <Send className="w-3.5 h-3.5" />
             </button>

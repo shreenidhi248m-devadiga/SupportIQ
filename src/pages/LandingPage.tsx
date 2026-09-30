@@ -9,7 +9,11 @@ import {
   TrendingUp,
   CheckCircle,
   ArrowRight,
-  Play
+  Play,
+  Check,
+  Zap,
+  ShieldCheck,
+  Layers
 } from 'lucide-react';
 
 export const LandingPage: React.FC = () => {
@@ -94,7 +98,7 @@ export const LandingPage: React.FC = () => {
             </div>
 
             {/* Right Column Demo Visualization Card */}
-            <div className="lg:col-span-5 relative animate-fade-in">
+            <div id="demo" className="lg:col-span-5 relative animate-fade-in scroll-mt-28">
               <div className="card-premium p-6 relative z-10">
                 <div className="flex items-center justify-between border-b border-[#E5E7EB] pb-4 mb-4">
                   <div className="flex items-center gap-2">
@@ -158,7 +162,7 @@ export const LandingPage: React.FC = () => {
       </section>
 
       {/* AI CAPABILITIES GRID */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section id="features" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 scroll-mt-28">
         <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
           <h2 className="text-sm font-mono text-[#2563EB] uppercase tracking-widest font-bold">Comprehensive Platform</h2>
           <h3 className="text-3xl sm:text-4xl font-extrabold text-[#102A56] dark:text-[#F8FAFC]">Engineered for Modern Customer Operations</h3>
@@ -182,6 +186,60 @@ export const LandingPage: React.FC = () => {
           ))}
         </div>
       </section>
+
+      {/* SOLUTIONS SECTION */}
+      <section id="solutions" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 scroll-mt-28">
+        <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
+          <h2 className="text-sm font-mono text-purple-600 dark:text-purple-400 uppercase tracking-widest font-bold">Industry Solutions</h2>
+          <h3 className="text-3xl sm:text-4xl font-extrabold text-[#102A56] dark:text-[#F8FAFC]">Tailored For High-Velocity Teams</h3>
+          <p className="text-gray-600 dark:text-[#A8B3C7] text-lg">
+            SupportIQ scales across technical support, billing escalations, claims processing, and customer success.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="card-premium p-8 space-y-4">
+            <div className="w-12 h-12 rounded-xl bg-purple-500/10 border border-purple-500/20 text-purple-600 dark:text-purple-400 flex items-center justify-center">
+              <Layers className="w-6 h-6" />
+            </div>
+            <h4 className="text-xl font-bold text-[#102A56] dark:text-[#F8FAFC]">Fintech & Insurance Claims</h4>
+            <p className="text-gray-600 dark:text-[#A8B3C7] text-sm leading-relaxed">
+              Extract claim forms, policy documents, and receipts automatically via OCR and fast-track to tier-2 adjusters.
+            </p>
+            <div className="pt-2 text-xs font-mono font-semibold text-purple-600 dark:text-purple-400 flex items-center gap-1.5">
+              <span>99.2% Accuracy Rate</span>
+            </div>
+          </div>
+
+          <div className="card-premium p-8 space-y-4">
+            <div className="w-12 h-12 rounded-xl bg-blue-500/10 border border-blue-500/20 text-blue-600 dark:text-blue-400 flex items-center justify-center">
+              <Zap className="w-6 h-6" />
+            </div>
+            <h4 className="text-xl font-bold text-[#102A56] dark:text-[#F8FAFC]">SaaS & Product Companies</h4>
+            <p className="text-gray-600 dark:text-[#A8B3C7] text-sm leading-relaxed">
+              Sub-second triage into Billing, Bug Reports, and Feature Requests directly to engineering and customer success reps.
+            </p>
+            <div className="pt-2 text-xs font-mono font-semibold text-blue-600 dark:text-blue-400 flex items-center gap-1.5">
+              <span>Under 400ms Triage</span>
+            </div>
+          </div>
+
+          <div className="card-premium p-8 space-y-4">
+            <div className="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-600 dark:text-emerald-400 flex items-center justify-center">
+              <ShieldCheck className="w-6 h-6" />
+            </div>
+            <h4 className="text-xl font-bold text-[#102A56] dark:text-[#F8FAFC]">Enterprise Customer Success</h4>
+            <p className="text-gray-600 dark:text-[#A8B3C7] text-sm leading-relaxed">
+              Real-time churn risk indicators flag frustrated accounts before negative reviews or contract cancellations occur.
+            </p>
+            <div className="pt-2 text-xs font-mono font-semibold text-emerald-600 dark:text-emerald-400 flex items-center gap-1.5">
+              <span>Proactive Retention</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
 
       {/* CTA SECTION */}
       <section className="max-w-4xl mx-auto px-4">

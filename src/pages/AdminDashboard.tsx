@@ -45,7 +45,7 @@ export const AdminDashboard: React.FC = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-[#040612] flex items-center justify-center">
+      <div className="min-h-screen bg-[#F8FAFC] dark:bg-[#040612] flex items-center justify-center transition-colors">
         <LoadingSpinner text="Aggregating MongoDB system telemetry..." />
       </div>
     );
@@ -66,35 +66,35 @@ export const AdminDashboard: React.FC = () => {
           {/* Top KPIs Row */}
           <KPICards analytics={analytics} />
 
-          {/* Charts Row */}
+          {/* Operations & Churn Risk Row */}
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
             <div className="lg:col-span-2">
               <TicketOperationsChart analytics={analytics} />
+            </div>
+            <div>
+              <ChurnRiskPanel analytics={analytics} />
+            </div>
+          </div>
+
+          {/* AI Intelligence & Status Distribution Row */}
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <div className="lg:col-span-2">
+              <AIIntelligencePanel analytics={analytics} />
             </div>
             <div>
               <TicketStatusDistribution analytics={analytics} />
             </div>
           </div>
 
-          {/* Middle Row */}
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-            <div className="lg:col-span-2">
-              <AIIntelligencePanel analytics={analytics} />
-            </div>
-            <div>
-              <DepartmentPerformance analytics={analytics} />
-            </div>
+          {/* Department Performance & Sentiment Row */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <DepartmentPerformance analytics={analytics} />
+            <SentimentIntelligence analytics={analytics} />
           </div>
 
-          {/* Bottom Row */}
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-            <div className="lg:col-span-2">
-              <RecentTicketsQueue />
-            </div>
-            <div className="space-y-6">
-              <SentimentIntelligence analytics={analytics} />
-              <ChurnRiskPanel analytics={analytics} />
-            </div>
+          {/* Recent Tickets Queue */}
+          <div>
+            <RecentTicketsQueue />
           </div>
         </div>
       )}

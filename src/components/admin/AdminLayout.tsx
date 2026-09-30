@@ -11,7 +11,7 @@ export const AdminLayout: React.FC<AdminLayoutProps> = ({ children, title }) => 
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (
-    <div className="min-h-screen bg-[#040612] text-slate-100 flex overflow-hidden font-sans">
+    <div className="min-h-screen bg-[#F8FAFC] dark:bg-[#040612] text-slate-900 dark:text-slate-100 flex overflow-hidden font-sans transition-colors duration-200">
       
       <AdminSidebar 
         isOpen={sidebarOpen} 

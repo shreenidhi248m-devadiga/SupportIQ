@@ -57,3 +57,40 @@ export const getNotifications = async (req: AuthRequest, res: Response): Promise
     sendError(res, error.message || 'Error fetching notifications', 500);
   }
 };
+
+export const changePassword = async (req: AuthRequest, res: Response): Promise<void> => {
+  try {
+    const userId = req.user?.id;
+    const { currentPassword, newPassword } = req.body;
+
+    if (!currentPassword || !newPassword) {
+      sendError(res, 'Current password and new password are required', 400);
+      return;
+    }
+
+    if (newPassword.length < 6) {
+      sendError(res, 'New password must be at least 6 characters', 400);
+      return;
+    }
+
+    const user = await User.findById(userId).select('+password');
+    if (!user) {
+      sendError(res, 'User not found', 404);
+      return;
+    }
+
+    const isMatch = await AuthService.comparePassword(currentPassword, user.password);
+    if (!isMatch) {
+      sendError(res, 'Current password is incorrect', 400);
+      return;
+    }
+
+    user.password = await AuthService.hashPassword(newPassword);
+    await user.save();
+
+    sendSuccess(res, 'Password changed successfully');
+  } catch (error: any) {
+    sendError(res, error.message || 'Error changing password', 500);
+  }
+};
+

@@ -24,12 +24,12 @@ export const DepartmentPerformance: React.FC<DepartmentPerformanceProps> = ({ an
   }).sort((a, b) => b.total - a.total);
 
   return (
-    <div className="bg-slate-900/50 border border-white/5 rounded-2xl p-6 h-full flex flex-col">
+    <div className="bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-white/5 rounded-2xl p-6 h-full flex flex-col shadow-sm">
       <div className="flex items-center justify-between mb-6">
-        <h3 className="text-base font-bold text-white flex items-center gap-2">
-          <Building2 className="w-4 h-4 text-brand-cyan" /> Department Performance
+        <h3 className="text-base font-bold text-slate-900 dark:text-white flex items-center gap-2">
+          <Building2 className="w-4 h-4 text-cyan-600 dark:text-brand-cyan" /> Department Performance
         </h3>
-        <Link to="/admin/departments" className="text-xs font-semibold text-brand-blue hover:text-brand-cyan transition-colors flex items-center gap-1 group">
+        <Link to="/admin/departments" className="text-xs font-semibold text-blue-600 hover:text-blue-700 dark:text-brand-blue dark:hover:text-brand-cyan transition-colors flex items-center gap-1 group">
           View Details <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
         </Link>
       </div>
@@ -37,20 +37,20 @@ export const DepartmentPerformance: React.FC<DepartmentPerformanceProps> = ({ an
       <div className="flex-1 overflow-x-auto">
         <table className="w-full text-left border-collapse">
           <thead>
-            <tr>
+            <tr className="border-b border-slate-200 dark:border-white/5">
               <th className="pb-3 text-xs font-semibold text-slate-500 uppercase tracking-wider font-mono">Department</th>
               <th className="pb-3 text-xs font-semibold text-slate-500 uppercase tracking-wider font-mono text-right">Open</th>
               <th className="pb-3 text-xs font-semibold text-slate-500 uppercase tracking-wider font-mono text-right">Resolved</th>
               <th className="pb-3 text-xs font-semibold text-slate-500 uppercase tracking-wider font-mono text-right hidden sm:table-cell">Avg Response</th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-white/5">
+          <tbody className="divide-y divide-slate-100 dark:divide-white/5">
             {deptData.map((dept) => (
-              <tr key={dept.name} className="hover:bg-white/[0.02] transition-colors group">
-                <td className="py-3 text-sm text-slate-300 font-medium">{dept.name}</td>
-                <td className="py-3 text-sm text-amber-400 font-mono text-right">{dept.open}</td>
-                <td className="py-3 text-sm text-emerald-400 font-mono text-right">{dept.resolved}</td>
-                <td className="py-3 text-sm text-slate-400 font-mono text-right hidden sm:table-cell">{dept.avgResponse}</td>
+              <tr key={dept.name} className="hover:bg-slate-50/80 dark:hover:bg-white/[0.02] transition-colors group">
+                <td className="py-3 text-sm text-slate-800 dark:text-slate-300 font-medium">{dept.name}</td>
+                <td className="py-3 text-sm text-amber-600 dark:text-amber-400 font-mono text-right font-semibold">{dept.open}</td>
+                <td className="py-3 text-sm text-emerald-600 dark:text-emerald-400 font-mono text-right font-semibold">{dept.resolved}</td>
+                <td className="py-3 text-sm text-slate-500 dark:text-slate-400 font-mono text-right hidden sm:table-cell">{dept.avgResponse}</td>
               </tr>
             ))}
           </tbody>

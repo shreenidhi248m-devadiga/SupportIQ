@@ -90,6 +90,7 @@ export const AppContent: React.FC = () => {
               <Route path="/admin/churn" element={<AdminChurnPage />} />
               <Route path="/admin/ai" element={<AdminAIPage />} />
               <Route path="/admin/settings" element={<AdminSettingsPage />} />
+              <Route path="/admin/deployment" element={<DeploymentPage />} />
             </Route>
           </Route>
 

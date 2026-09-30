@@ -80,19 +80,19 @@ export const KPICards: React.FC<KPICardsProps> = ({ analytics }) => {
       {kpis.map((kpi) => {
         const Icon = kpi.icon;
         return (
-          <div key={kpi.id} className="bg-slate-900/50 border border-white/5 rounded-2xl p-4 hover:bg-slate-800/50 transition-colors group relative overflow-hidden">
+          <div key={kpi.id} className="bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-white/5 rounded-2xl p-4 hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors group relative overflow-hidden shadow-sm">
             <div className="flex justify-between items-start mb-2">
               <div className={`p-2 rounded-lg ${kpi.bg} ${kpi.color}`}>
                 <Icon className="w-4 h-4" />
               </div>
-              <div className={`text-[10px] font-mono font-medium px-1.5 py-0.5 rounded ${kpi.trendUp && kpi.id !== 'high-risk' ? 'text-emerald-400 bg-emerald-400/10' : kpi.id === 'high-risk' && !kpi.trendUp ? 'text-emerald-400 bg-emerald-400/10' : 'text-rose-400 bg-rose-400/10'}`} title="vs previous period">
+              <div className={`text-[10px] font-mono font-medium px-1.5 py-0.5 rounded ${kpi.trendUp && kpi.id !== 'high-risk' ? 'text-emerald-700 bg-emerald-50 dark:text-emerald-400 dark:bg-emerald-400/10' : kpi.id === 'high-risk' && !kpi.trendUp ? 'text-emerald-700 bg-emerald-50 dark:text-emerald-400 dark:bg-emerald-400/10' : 'text-rose-700 bg-rose-50 dark:text-rose-400 dark:bg-rose-400/10'}`} title="vs previous period">
                 {kpi.trendUp ? '↑' : '↓'} {kpi.trend.replace('-', '')}
               </div>
             </div>
             
             <div className="mt-4">
-              <div className="text-2xl font-bold text-white tracking-tight font-mono">{kpi.value}</div>
-              <div className="text-xs text-slate-400 mt-1 font-medium">{kpi.label}</div>
+              <div className="text-2xl font-bold text-slate-900 dark:text-white tracking-tight font-mono">{kpi.value}</div>
+              <div className="text-xs text-slate-500 dark:text-slate-400 mt-1 font-medium">{kpi.label}</div>
             </div>
             
             {/* Subtle glow effect on hover */}
